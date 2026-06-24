@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AboveVTT Roll Settings</title>
+  <meta charset="utf-8" />
+  <script src="./sdpi-components.js"></script>
+</head>
+
+<body>
+
+  <sdpi-item label="Dice">
+    <sdpi-textfield setting="expression" placeholder="1d20+5"></sdpi-textfield>
+  </sdpi-item>
+
+  <sdpi-item label="Roll Type">
+    <sdpi-select setting="rollType" default="check">
+      <option value="check">Check</option>
+      <option value="save">Save</option>
+      <option value="attack">Attack</option>
+      <option value="damage">Damage</option>
+      <option value="heal">Healing</option>
+      <option value="custom">Custom</option>
+    </sdpi-select>
+  </sdpi-item>
+
+  <sdpi-item label="Chat Label">
+    <sdpi-textfield setting="action" placeholder="Perception"></sdpi-textfield>
+  </sdpi-item>
+
+<sdpi-item label="Damage Type">
+  <sdpi-textfield setting="damageType" placeholder="Fire"></sdpi-textfield>
+</sdpi-item>
+
+</body>
+</html>

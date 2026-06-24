@@ -1,0 +1,58 @@
+{
+  "Name": "AVTT Unseen Servant Plugin",
+  "Version": "0.1.0.0",
+  "Author": "Arnold Chon",
+  "Actions": [
+    {
+      "Name": "AboveVTT Roll",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Roll dice in AboveVTT.",
+      "PropertyInspectorPath": "ui/increment-counter.html",
+      "Controllers": ["Keypad"],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Toggle Daylight",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-daylight",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Toggle daylight color in AboveVTT.",
+      "Controllers": ["Keypad"],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    }
+  ],
+  "Category": "AVTT Unseen Servant Plugin",
+  "CategoryIcon": "imgs/plugin/category-icon",
+  "CodePath": "bin/plugin.js",
+  "Description": "Above VTT Stream Deck Control Plugin",
+  "Icon": "imgs/plugin/marketplace",
+  "SDKVersion": 3,
+  "Software": {
+    "MinimumVersion": "7.1"
+  },
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "12"
+    },
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "Nodejs": {
+    "Version": "24",
+    "Debug": "enabled"
+  },
+  "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin"
+}

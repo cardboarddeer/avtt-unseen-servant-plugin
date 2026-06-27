@@ -82,6 +82,54 @@
       "TitleAlignment": "middle"
     }
   ]
+},
+{
+  "Name": "Game Log",
+  "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-gamelog-tab",
+  "Icon": "imgs/actions/counter/icon",
+  "Tooltip": "Open Game Log",
+  "Controllers": ["Keypad"],
+  "States": [{ "Image": "imgs/actions/counter/key", "TitleAlignment": "middle" }]
+},
+{
+  "Name": "Tokens",
+  "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-tokens-tab",
+  "Icon": "imgs/actions/counter/icon",
+  "Tooltip": "Open Tokens",
+  "Controllers": ["Keypad"],
+  "States": [{ "Image": "imgs/actions/counter/key", "TitleAlignment": "middle" }]
+},
+{
+  "Name": "Scenes",
+  "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-scenes-tab",
+  "Icon": "imgs/actions/counter/icon",
+  "Tooltip": "Open Scenes",
+  "Controllers": ["Keypad"],
+  "States": [{ "Image": "imgs/actions/counter/key", "TitleAlignment": "middle" }]
+},
+{
+  "Name": "Sounds",
+  "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-sounds-tab",
+  "Icon": "imgs/actions/counter/icon",
+  "Tooltip": "Open Sounds",
+  "Controllers": ["Keypad"],
+  "States": [{ "Image": "imgs/actions/counter/key", "TitleAlignment": "middle" }]
+},
+{
+  "Name": "Journal",
+  "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-journal-tab",
+  "Icon": "imgs/actions/counter/icon",
+  "Tooltip": "Open Journal",
+  "Controllers": ["Keypad"],
+  "States": [{ "Image": "imgs/actions/counter/key", "TitleAlignment": "middle" }]
+},
+{
+  "Name": "Settings",
+  "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-settings-tab",
+  "Icon": "imgs/actions/counter/icon",
+  "Tooltip": "Open Settings",
+  "Controllers": ["Keypad"],
+  "States": [{ "Image": "imgs/actions/counter/key", "TitleAlignment": "middle" }]
 }
 ],
 

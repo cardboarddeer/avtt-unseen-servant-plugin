@@ -205,6 +205,36 @@ export class OpenSettingsTab extends SingletonAction<{}> {
   }
 }
 
+@action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.zoom-in" })
+export class ZoomIn extends SingletonAction<{}> {
+  override onWillAppear(ev: WillAppearEvent<{}>) {
+    return ev.action.setTitle("Zoom\nIn");
+  }
+
+  override async onKeyDown() {
+    await fetch("http://localhost:3000/command", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ command: "zoomIn" })
+    });
+  }
+}
+
+@action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.zoom-out" })
+export class ZoomOut extends SingletonAction<{}> {
+  override onWillAppear(ev: WillAppearEvent<{}>) {
+    return ev.action.setTitle("Zoom\nOut");
+  }
+
+  override async onKeyDown() {
+    await fetch("http://localhost:3000/command", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ command: "zoomOut" })
+    });
+  }
+}
+
 type MarkerSettings = {
   color?: string;
   text?: string;

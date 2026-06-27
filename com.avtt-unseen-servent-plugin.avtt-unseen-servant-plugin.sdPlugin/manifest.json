@@ -129,8 +129,40 @@
   "Icon": "imgs/actions/counter/icon",
   "Tooltip": "Open Settings",
   "Controllers": ["Keypad"],
-  "States": [{ "Image": "imgs/actions/counter/key", "TitleAlignment": "middle" }]
+  "States": [
+    {
+      "Image": "imgs/actions/counter/key",
+      "TitleAlignment": "middle"
+    }
+  ]
+},
+{
+  "Name": "ZoomIn",
+  "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.zoom-in",
+  "Icon": "imgs/actions/counter/icon",
+  "Tooltip": "Zoom in",
+  "Controllers": ["Keypad"],
+  "States": [
+    {
+      "Image": "imgs/actions/counter/key",
+      "TitleAlignment": "middle"
+    }
+  ]
+},
+{
+  "Name": "ZoomOut",
+  "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.zoom-out",
+  "Icon": "imgs/actions/counter/icon",
+  "Tooltip": "Zoom out",
+  "Controllers": ["Keypad"],
+  "States": [
+    {
+      "Image": "imgs/actions/counter/key",
+      "TitleAlignment": "middle"
+    }
+  ]
 }
+
 ],
 
   "Category": "AVTT Unseen Servant Plugin",

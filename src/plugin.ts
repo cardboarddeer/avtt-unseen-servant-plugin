@@ -12,7 +12,9 @@ import {
   OpenScenesTab,
   OpenSoundsTab,
   OpenJournalTab,
-  OpenSettingsTab
+  OpenSettingsTab,
+  ZoomIn,
+  ZoomOut
 } from "./actions/increment-counter";
 
 streamDeck.logger.setLevel("trace");
@@ -29,5 +31,7 @@ streamDeck.actions.registerAction(new OpenScenesTab());
 streamDeck.actions.registerAction(new OpenSoundsTab());
 streamDeck.actions.registerAction(new OpenJournalTab());
 streamDeck.actions.registerAction(new OpenSettingsTab());
+streamDeck.actions.registerAction(new ZoomIn());
+streamDeck.actions.registerAction(new ZoomOut());
 
 streamDeck.connect();

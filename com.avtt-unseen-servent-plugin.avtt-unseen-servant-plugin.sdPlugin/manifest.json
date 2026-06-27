@@ -3,12 +3,52 @@
   "Version": "0.1.0.0",
   "Author": "Arnold Chon",
   "Actions": [
-    {
-      "Name": "AboveVTT Roll",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll",
+  {
+    "Name": "AboveVTT Roll",
+    "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll",
+    "Icon": "imgs/actions/counter/icon",
+    "Tooltip": "Roll dice in AboveVTT.",
+    "PropertyInspectorPath": "ui/increment-counter.html",
+    "Controllers": ["Keypad"],
+    "States": [
+      {
+        "Image": "imgs/actions/counter/key",
+        "TitleAlignment": "middle"
+      }
+    ]
+  },
+  {
+    "Name": "Toggle Daylight",
+    "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-daylight",
+    "Icon": "imgs/actions/counter/icon",
+    "Tooltip": "Toggle daylight color in AboveVTT.",
+    "Controllers": ["Keypad"],
+    "States": [
+      {
+        "Image": "imgs/actions/counter/key",
+        "TitleAlignment": "middle"
+      }
+    ]
+  },
+  {
+    "Name": "Toggle Marker",
+    "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-marker",
+    "Icon": "imgs/actions/counter/icon",
+    "Tooltip": "Toggle a custom marker on selected AboveVTT tokens.",
+    "PropertyInspectorPath": "ui/toggle-marker.html",
+    "Controllers": ["Keypad"],
+    "States": [
+      {
+        "Image": "imgs/actions/counter/key",
+        "TitleAlignment": "middle"
+      }
+    ]
+  },
+        {
+      "Name": "Clear Markers",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.clear-markers",
       "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Roll dice in AboveVTT.",
-      "PropertyInspectorPath": "ui/increment-counter.html",
+      "Tooltip": "Clear all custom markers from selected AboveVTT tokens.",
       "Controllers": ["Keypad"],
       "States": [
         {
@@ -17,20 +57,34 @@
         }
       ]
     },
+{
+  "Name": "Next Initiative",
+  "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.next-initiative",
+  "Icon": "imgs/actions/counter/icon",
+  "Tooltip": "Move AboveVTT combat tracker to the next initiative turn.",
+  "Controllers": ["Keypad"],
+  "States": [
     {
-      "Name": "Toggle Daylight",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-daylight",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Toggle daylight color in AboveVTT.",
-      "Controllers": ["Keypad"],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
+      "Image": "imgs/actions/counter/key",
+      "TitleAlignment": "middle"
     }
-  ],
+  ]
+},
+{
+  "Name": "Previous Initiative",
+  "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.previous-initiative",
+  "Icon": "imgs/actions/counter/icon",
+  "Tooltip": "Move AboveVTT combat tracker to the previous initiative turn.",
+  "Controllers": ["Keypad"],
+  "States": [
+    {
+      "Image": "imgs/actions/counter/key",
+      "TitleAlignment": "middle"
+    }
+  ]
+}
+],
+
   "Category": "AVTT Unseen Servant Plugin",
   "CategoryIcon": "imgs/plugin/category-icon",
   "CodePath": "bin/plugin.js",

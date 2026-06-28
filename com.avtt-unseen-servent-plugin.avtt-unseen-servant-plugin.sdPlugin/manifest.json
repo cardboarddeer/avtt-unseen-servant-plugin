@@ -137,7 +137,7 @@
   ]
 },
 {
-  "Name": "ZoomIn",
+  "Name": "Zoom In",
   "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.zoom-in",
   "Icon": "imgs/actions/counter/icon",
   "Tooltip": "Zoom in",
@@ -150,7 +150,7 @@
   ]
 },
 {
-  "Name": "ZoomOut",
+  "Name": "Zoom Out",
   "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.zoom-out",
   "Icon": "imgs/actions/counter/icon",
   "Tooltip": "Zoom out",

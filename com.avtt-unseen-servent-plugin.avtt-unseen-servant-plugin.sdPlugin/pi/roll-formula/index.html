@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Roll Formula Settings</title>
+  <script src="index.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 12px; color: white; background: #2d2d2d; }
+    label { display:block; margin-top:12px; font-size:12px; opacity:.85; }
+    input, select { width:100%; box-sizing:border-box; margin-top:4px; padding:6px; }
+    .row { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <label>Dice</label>
+  <input id="dice" value="1d20" />
+
+  <label>Modifier 1</label>
+  <select id="modifier1"></select>
+
+  <label>Modifier 2</label>
+  <select id="modifier2"></select>
+
+  <label>Modifier 3</label>
+  <select id="modifier3"></select>
+
+  <label class="row">
+    <input id="addPb" type="checkbox" style="width:auto;">
+    Add Proficiency Bonus
+  </label>
+
+  <label>Label</label>
+  <input id="label" value="{name} Roll" />
+
+  <label>Roll Type</label>
+  <select id="rollType">
+    <option value="check">check</option>
+    <option value="save">save</option>
+    <option value="damage">damage</option>
+    <option value="to hit">to hit</option>
+    <option value="initiative">initiative</option>
+    <option value="roll">roll</option>
+  </select>
+
+  <label>Generated Formula</label>
+  <input id="formulaPreview" readonly />
+</body>
+</html>

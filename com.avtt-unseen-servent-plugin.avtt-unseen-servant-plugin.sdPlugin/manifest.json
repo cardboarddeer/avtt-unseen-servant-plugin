@@ -161,6 +161,21 @@
       "TitleAlignment": "middle"
     }
   ]
+},
+
+{
+  "Name": "Roll Formula",
+  "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll-selected-formula",
+  "Icon": "imgs/actions/counter/icon",
+  "Tooltip": "Roll custom formula using selected token data",
+  "Controllers": ["Keypad"],
+  "PropertyInspectorPath": "pi/roll-formula/index.html",
+  "States": [
+    {
+      "Image": "imgs/actions/counter/key",
+      "TitleAlignment": "middle"
+    }
+  ]
 }
 
 ],

@@ -235,6 +235,37 @@ export class ZoomOut extends SingletonAction<{}> {
   }
 }
 
+type RollSelectedFormulaSettings = {
+  formula?: string;
+  label?: string;
+  rollType?: "to hit" | "damage" | "save" | "check" | "heal" | "reroll" | "initiative" | "attack" | "roll" | "recharge";
+};
+
+async function sendAVTTCommand(command: any) {
+  await fetch("http://localhost:3000/command", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      ...command,
+      time: Date.now()
+    })
+  });
+}
+
+@action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll-selected-formula" })
+export class RollSelectedFormula extends SingletonAction<RollSelectedFormulaSettings> {
+  override async onKeyDown(ev: any) {
+    const settings = ev.payload.settings || {};
+
+    await sendAVTTCommand({
+      command: "rollSelectedFormula",
+      formula: settings.formula || "1d20",
+      label: settings.label || "Selected Token Roll",
+      rollType: settings.rollType || "check"
+    });
+  }
+}
+
 type MarkerSettings = {
   color?: string;
   text?: string;

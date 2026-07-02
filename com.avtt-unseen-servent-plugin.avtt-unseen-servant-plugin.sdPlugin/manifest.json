@@ -176,6 +176,21 @@
       "TitleAlignment": "middle"
     }
   ]
+},
+
+{
+  "Name": "Game Log Message",
+  "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.game-log-message",
+  "Icon": "imgs/actions/counter/icon",
+  "Tooltip": "Send text to the AboveVTT game log",
+  "Controllers": ["Keypad"],
+  "PropertyInspectorPath": "pi/game-log-message/index.html",
+  "States": [
+    {
+      "Image": "imgs/actions/counter/key",
+      "TitleAlignment": "middle"
+    }
+  ]
 }
 
 ],

@@ -253,6 +253,7 @@ async function sendAVTTCommand(command: any) {
 }
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll-selected-formula" })
+@action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll-selected-formula" })
 export class RollSelectedFormula extends SingletonAction<RollSelectedFormulaSettings> {
   override async onKeyDown(ev: any) {
     const settings = ev.payload.settings || {};
@@ -277,3 +278,25 @@ type RollSettings = {
   action?: string;
   damageType?: string;
 };
+type GameLogMessageSettings = {
+  title?: string;
+  text?: string;
+};
+
+@action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.game-log-message" })
+export class GameLogMessage extends SingletonAction<GameLogMessageSettings> {
+  override async onKeyDown(ev: any) {
+    const settings = ev.payload.settings || {};
+
+    await fetch("http://localhost:3000/command", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        command: "sendTextToGamelog",
+        title: settings.title || "",
+        text: settings.text || "",
+        time: Date.now()
+      })
+    });
+  }
+}

@@ -15,7 +15,8 @@ import {
   OpenSettingsTab,
   ZoomIn,
   ZoomOut,
-  RollSelectedFormula
+  RollSelectedFormula,
+  GameLogMessage
 } from "./actions/increment-counter";
 
 streamDeck.logger.setLevel("trace");
@@ -35,5 +36,6 @@ streamDeck.actions.registerAction(new OpenSettingsTab());
 streamDeck.actions.registerAction(new ZoomIn());
 streamDeck.actions.registerAction(new ZoomOut());
 streamDeck.actions.registerAction(new RollSelectedFormula());
+streamDeck.actions.registerAction(new GameLogMessage());
 
 streamDeck.connect();

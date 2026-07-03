@@ -31,3 +31,8 @@ export type GameLogMessageSettings = {
   text?: string;
   headerStyle?: string;
 };
+
+export type ConditionSettings = {
+  condition?: string;
+  label?: string;
+};

@@ -14,6 +14,7 @@ import {
 } from "./actions/tabs";
 import { ZoomIn, ZoomOut } from "./actions/zoom";
 import { GameLogMessageAction } from "./actions/game-log-message";
+import { ConditionAction } from "./actions/conditions";
 
 streamDeck.logger.setLevel("trace");
 
@@ -33,5 +34,6 @@ streamDeck.actions.registerAction(new ZoomIn());
 streamDeck.actions.registerAction(new ZoomOut());
 streamDeck.actions.registerAction(new MonsterActionRoll());
 streamDeck.actions.registerAction(new GameLogMessageAction());
+streamDeck.actions.registerAction(new ConditionAction());
 
 streamDeck.connect();

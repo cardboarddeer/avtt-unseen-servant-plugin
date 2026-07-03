@@ -15,7 +15,7 @@ function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, 
     }));
 
     const settings = actionInfo.payload.settings || {};
-    document.getElementById("condition").value = settings.condition || "prone";
+    document.getElementById("condition").value = settings.condition || "Prone";
     document.getElementById("label").value = settings.label || "";
   };
 }

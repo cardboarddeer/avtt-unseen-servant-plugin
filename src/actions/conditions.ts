@@ -12,7 +12,7 @@ export class ConditionAction extends SingletonAction<ConditionSettings> {
 
   override async onKeyDown(ev: KeyDownEvent<ConditionSettings>): Promise<void> {
     const settings = ev.payload.settings;
-    const condition = settings.condition || "prone";
+    const condition = settings.condition || "Prone";
 
     await sendAVTTCommand({
       command: AVTT_COMMANDS.TOGGLE_CONDITION,

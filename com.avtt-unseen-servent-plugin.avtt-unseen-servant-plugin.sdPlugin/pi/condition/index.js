@@ -2,6 +2,23 @@ let websocket = null;
 let uuid = null;
 let actionInfo = null;
 
+function getConditionEl() {
+  return document.getElementById("condition");
+}
+
+function getCustomConditionEl() {
+  return document.getElementById("customCondition");
+}
+
+function getLabelEl() {
+  return document.getElementById("label");
+}
+
+function updateCustomVisibility() {
+  const isCustom = getConditionEl().value === "__custom__";
+  document.getElementById("customRow").classList.toggle("hidden", !isCustom);
+}
+
 function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, inActionInfo) {
   uuid = inUUID;
   actionInfo = JSON.parse(inActionInfo);
@@ -15,26 +32,35 @@ function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, 
     }));
 
     const settings = actionInfo.payload.settings || {};
-    document.getElementById("condition").value = settings.condition || "Prone";
-    document.getElementById("label").value = settings.label || "";
+
+    getConditionEl().value = settings.condition || "Prone";
+    getCustomConditionEl().value = settings.customCondition || "";
+    getLabelEl().value = settings.label || "";
+
+    updateCustomVisibility();
   };
 }
 
 function saveSettings() {
   if (!websocket || !uuid) return;
 
-  const condition = document.getElementById("condition").value;
-  const label = document.getElementById("label").value;
+  const condition = getConditionEl().value;
+  const customCondition = getCustomConditionEl().value;
+  const label = getLabelEl().value;
 
   websocket.send(JSON.stringify({
     event: "setSettings",
     context: uuid,
     payload: {
       condition,
+      customCondition,
       label
     }
   }));
+
+  updateCustomVisibility();
 }
 
-document.getElementById("condition").addEventListener("change", saveSettings);
-document.getElementById("label").addEventListener("input", saveSettings);
+getConditionEl().addEventListener("change", saveSettings);
+getCustomConditionEl().addEventListener("input", saveSettings);
+getLabelEl().addEventListener("input", saveSettings);

@@ -34,5 +34,6 @@ export type GameLogMessageSettings = {
 
 export type ConditionSettings = {
   condition?: string;
+  customCondition?: string;
   label?: string;
 };

@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Condition</title>
+  <title>Token Status</title>
   <style>
     body {
       margin: 0;
@@ -47,12 +47,17 @@
       color: #8f8f8f;
       font-size: 11px;
       line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
   <div class="field">
-    <label for="condition">Condition</label>
+    <label for="condition">Status</label>
     <select id="condition">
       <optgroup label="Conditions">
         <option value="Blinded">Blinded</option>
@@ -86,7 +91,16 @@
         <option value="Bardic Inspiration">Bardic Inspiration</option>
         <option value="Hasted">Hasted</option>
       </optgroup>
+
+      <optgroup label="Custom">
+        <option value="__custom__">Custom...</option>
+      </optgroup>
     </select>
+  </div>
+
+  <div id="customRow" class="field hidden">
+    <label for="customCondition">Custom Name</label>
+    <input id="customCondition" type="text" placeholder="Hexed, Hunter's Mark, Phase 2..." />
   </div>
 
   <div class="field">
@@ -95,7 +109,7 @@
   </div>
 
   <div class="hint">
-    Leave Button Label blank to use the condition name.
+    Leave Button Label blank to use the status name. Custom SVG icons go in <code>imgs/conditions</code>.
   </div>
 
   <script src="index.js"></script>

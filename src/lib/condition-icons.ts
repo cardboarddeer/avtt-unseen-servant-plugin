@@ -1,42 +1,19 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const CONDITION_ICON_FILES: Record<string, string> = {
-  Blinded: "blinded.svg",
-  Charmed: "charmed.svg",
-  Deafened: "deafened.svg",
-  Exhaustion: "exhaustion.svg",
-  Frightened: "frightened.svg",
-  Grappled: "grappled.svg",
-  Incapacitated: "incapacitated.svg",
-  Invisible: "invisible.svg",
-  Paralyzed: "paralyzed.svg",
-  Petrified: "petrified.svg",
-  Poisoned: "poisoned.svg",
-  Prone: "prone.svg",
-  Restrained: "restrained.svg",
-  Stunned: "stunned.svg",
-  Unconscious: "unconscious.svg",
-
-  "Concentration(Reminder)": "concentration.svg",
-  "Reaction Used": "reaction-used.svg",
-  Flying: "flying.svg",
-  Burning: "burning.svg",
-  Rage: "rage.svg",
-  Blessed: "blessed.svg",
-  Baned: "baned.svg",
-  Bloodied: "bloodied.svg",
-  Advantage: "advantage.svg",
-  Disadvantage: "disadvantage.svg",
-  "Bardic Inspiration": "bardic-inspiration.svg",
-  Hasted: "hasted.svg"
-};
+function conditionToIconFilename(condition: string): string {
+  return condition
+    .trim()
+    .toLowerCase()
+    .replace(/\(.*?\)/g, " $& ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "") + ".svg";
+}
 
 export function getConditionIconDataUrl(condition: string | undefined): string | undefined {
   if (!condition) return undefined;
 
-  const filename = CONDITION_ICON_FILES[condition];
-  if (!filename) return undefined;
+  const filename = conditionToIconFilename(condition);
 
   const iconPath = path.join(
     process.cwd(),

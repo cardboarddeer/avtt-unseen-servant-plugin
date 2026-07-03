@@ -1,4 +1,5 @@
 import { action, KeyDownEvent, SingletonAction, WillAppearEvent } from "@elgato/streamdeck";
+import { sendAVTTCommand, sendAVTTRoll, sendAVTTGameLog } from "../lib/avtt-client";
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll" })
 export class IncrementCounter extends SingletonAction<RollSettings> {
@@ -22,11 +23,7 @@ export class IncrementCounter extends SingletonAction<RollSettings> {
       action: settings.action || "Stream Deck"
     };
 
-    await fetch("http://localhost:3000/roll", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(roll)
-    });
+    await sendAVTTRoll(roll);
 
     await ev.action.setTitle(settings.action || roll.expression);
   }
@@ -39,11 +36,7 @@ export class ToggleDaylight extends SingletonAction<{}> {
   }
 
   override async onKeyDown(ev: KeyDownEvent<{}>): Promise<void> {
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ command: "toggleDaylight" })
-    });
+    await sendAVTTCommand({ command: "toggleDaylight" });
   }
 }
 
@@ -56,14 +49,10 @@ export class ToggleMarker extends SingletonAction<MarkerSettings> {
   override async onKeyDown(ev: KeyDownEvent<MarkerSettings>): Promise<void> {
     const settings = ev.payload.settings;
 
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-  command: "toggleMarker",
-  color: settings.color || "#ff0000",
-  text: settings.text || "Marked"
-})
+    await sendAVTTCommand({
+      command: "toggleMarker",
+      color: settings.color || "#ff0000",
+      text: settings.text || "Marked"
     });
 
     await ev.action.setTitle(settings.text || "Marker");
@@ -77,11 +66,7 @@ export class ClearMarkers extends SingletonAction<{}> {
   }
 
   override async onKeyDown(ev: KeyDownEvent<{}>): Promise<void> {
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ command: "clearMarkers" })
-    });
+    await sendAVTTCommand({ command: "clearMarkers" });
   }
 }
 
@@ -92,11 +77,7 @@ export class NextInitiative extends SingletonAction<{}> {
   }
 
   override async onKeyDown(ev: KeyDownEvent<{}>): Promise<void> {
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ command: "nextInitiative" })
-    });
+    await sendAVTTCommand({ command: "nextInitiative" });
   }
 }
 
@@ -107,11 +88,7 @@ export class PreviousInitiative extends SingletonAction<{}> {
   }
 
   override async onKeyDown(ev: KeyDownEvent<{}>): Promise<void> {
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ command: "previousInitiative" })
-    });
+    await sendAVTTCommand({ command: "previousInitiative" });
   }
 }
 
@@ -122,11 +99,7 @@ export class OpenGameLogTab extends SingletonAction<{}> {
   }
 
   override async onKeyDown() {
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ command: "openGameLogTab" })
-    });
+    await sendAVTTCommand({ command: "openGameLogTab" });
   }
 }
 
@@ -137,11 +110,7 @@ export class OpenTokensTab extends SingletonAction<{}> {
   }
 
   override async onKeyDown() {
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ command: "openTokensTab" })
-    });
+    await sendAVTTCommand({ command: "openTokensTab" });
   }
 }
 
@@ -152,11 +121,7 @@ export class OpenScenesTab extends SingletonAction<{}> {
   }
 
   override async onKeyDown() {
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ command: "openScenesTab" })
-    });
+    await sendAVTTCommand({ command: "openScenesTab" });
   }
 }
 
@@ -167,11 +132,7 @@ export class OpenSoundsTab extends SingletonAction<{}> {
   }
 
   override async onKeyDown() {
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ command: "openSoundsTab" })
-    });
+    await sendAVTTCommand({ command: "openSoundsTab" });
   }
 }
 
@@ -182,11 +143,7 @@ export class OpenJournalTab extends SingletonAction<{}> {
   }
 
   override async onKeyDown() {
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ command: "openJournalTab" })
-    });
+    await sendAVTTCommand({ command: "openJournalTab" });
   }
 }
 
@@ -197,11 +154,7 @@ export class OpenSettingsTab extends SingletonAction<{}> {
   }
 
   override async onKeyDown() {
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ command: "openSettingsTab" })
-    });
+    await sendAVTTCommand({ command: "openSettingsTab" });
   }
 }
 
@@ -212,11 +165,7 @@ export class ZoomIn extends SingletonAction<{}> {
   }
 
   override async onKeyDown() {
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ command: "zoomIn" })
-    });
+    await sendAVTTCommand({ command: "zoomIn" });
   }
 }
 
@@ -227,11 +176,7 @@ export class ZoomOut extends SingletonAction<{}> {
   }
 
   override async onKeyDown() {
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ command: "zoomOut" })
-    });
+    await sendAVTTCommand({ command: "zoomOut" });
   }
 }
 
@@ -241,16 +186,6 @@ type RollSelectedFormulaSettings = {
   rollType?: "to hit" | "damage" | "save" | "check" | "heal" | "reroll" | "initiative" | "attack" | "roll" | "recharge";
 };
 
-async function sendAVTTCommand(command: any) {
-  await fetch("http://localhost:3000/command", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      ...command,
-      time: Date.now()
-    })
-  });
-}
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll-selected-formula" })
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll-selected-formula" })
@@ -289,16 +224,11 @@ export class GameLogMessage extends SingletonAction<GameLogMessageSettings> {
   override async onKeyDown(ev: any) {
     const settings = ev.payload.settings || {};
 
-    await fetch("http://localhost:3000/command", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        command: "sendTextToGamelog",
-        title: settings.title || "",
-        text: settings.text || "",
-        headerStyle: settings.headerStyle || "simple",
-        time: Date.now()
-      })
+    await sendAVTTCommand({
+      command: "sendTextToGamelog",
+      title: settings.title || "",
+      text: settings.text || "",
+      headerStyle: settings.headerStyle || "simple"
     });
   }
 }

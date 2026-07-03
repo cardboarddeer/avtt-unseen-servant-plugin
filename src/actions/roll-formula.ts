@@ -1,18 +1,8 @@
 import { action, KeyDownEvent, SingletonAction, WillAppearEvent } from "@elgato/streamdeck";
 import { sendAVTTRoll, sendAVTTCommand } from "../lib/avtt-client";
+import { RollSettings, RollSelectedFormulaSettings } from "../types/action-settings";
 
-type RollSettings = {
-  expression?: string;
-  rollType?: string;
-  action?: string;
-  damageType?: string;
-};
 
-type RollSelectedFormulaSettings = {
-  formula?: string;
-  label?: string;
-  rollType?: "to hit" | "damage" | "save" | "check" | "heal" | "reroll" | "initiative" | "attack" | "roll" | "recharge";
-};
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll" })
 export class RollFormulaAction extends SingletonAction<RollSettings> {

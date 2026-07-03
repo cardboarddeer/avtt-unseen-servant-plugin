@@ -1,11 +1,8 @@
 import { action, KeyDownEvent, SingletonAction, WillAppearEvent } from "@elgato/streamdeck";
 import { sendAVTTCommand } from "../lib/avtt-client";
 import { StaticCommandAction } from "./shared/static-command-action";
+import { MarkerSettings } from "../types/action-settings";
 
-type MarkerSettings = {
-  color?: string;
-  text?: string;
-};
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-marker" })
 export class ToggleMarker extends SingletonAction<MarkerSettings> {

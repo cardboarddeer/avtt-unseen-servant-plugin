@@ -1,11 +1,7 @@
 import { action, SingletonAction } from "@elgato/streamdeck";
 import { sendAVTTCommand } from "../lib/avtt-client";
+import { GameLogMessageSettings } from "../types/action-settings";
 
-type GameLogMessageSettings = {
-  title?: string;
-  text?: string;
-  headerStyle?: string;
-};
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.game-log-message" })
 export class GameLogMessageAction extends SingletonAction<GameLogMessageSettings> {

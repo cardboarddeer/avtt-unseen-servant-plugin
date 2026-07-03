@@ -1,5 +1,6 @@
 import { action, SingletonAction } from "@elgato/streamdeck";
 import { sendAVTTCommand } from "../lib/avtt-client";
+import { AVTT_COMMANDS } from "../lib/avtt-commands";
 import { GameLogMessageSettings } from "../types/action-settings";
 
 
@@ -9,7 +10,7 @@ export class GameLogMessageAction extends SingletonAction<GameLogMessageSettings
     const settings = ev.payload.settings || {};
 
     await sendAVTTCommand({
-      command: "sendTextToGamelog",
+      command: AVTT_COMMANDS.SEND_TEXT_TO_GAMELOG,
       title: settings.title || "",
       text: settings.text || "",
       headerStyle: settings.headerStyle || "simple"

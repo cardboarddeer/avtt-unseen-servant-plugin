@@ -1,5 +1,6 @@
 import { action, KeyDownEvent, SingletonAction, WillAppearEvent } from "@elgato/streamdeck";
 import { sendAVTTCommand } from "../lib/avtt-client";
+import { AVTT_COMMANDS } from "../lib/avtt-commands";
 import { StaticCommandAction } from "./shared/static-command-action";
 import { MarkerSettings } from "../types/action-settings";
 
@@ -14,7 +15,7 @@ export class ToggleMarker extends SingletonAction<MarkerSettings> {
     const settings = ev.payload.settings;
 
     await sendAVTTCommand({
-      command: "toggleMarker",
+      command: AVTT_COMMANDS.TOGGLE_MARKER,
       color: settings.color || "#ff0000",
       text: settings.text || "Marked"
     });
@@ -26,5 +27,5 @@ export class ToggleMarker extends SingletonAction<MarkerSettings> {
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.clear-markers" })
 export class ClearMarkers extends StaticCommandAction {
   protected title = "Clear\nMarkers";
-  protected command = "clearMarkers";
+  protected command = AVTT_COMMANDS.CLEAR_MARKERS;
 }

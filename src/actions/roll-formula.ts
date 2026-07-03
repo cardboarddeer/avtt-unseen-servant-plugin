@@ -1,5 +1,6 @@
 import { action, KeyDownEvent, SingletonAction, WillAppearEvent } from "@elgato/streamdeck";
 import { sendAVTTRoll, sendAVTTCommand } from "../lib/avtt-client";
+import { AVTT_COMMANDS } from "../lib/avtt-commands";
 import { RollSettings, RollSelectedFormulaSettings } from "../types/action-settings";
 
 
@@ -38,7 +39,7 @@ export class MonsterActionRoll extends SingletonAction<RollSelectedFormulaSettin
     const settings = ev.payload.settings || {};
 
     await sendAVTTCommand({
-      command: "rollSelectedFormula",
+      command: AVTT_COMMANDS.ROLL_SELECTED_FORMULA,
       formula: settings.formula || "1d20",
       label: settings.label || "Selected Token Roll",
       rollType: settings.rollType || "check"

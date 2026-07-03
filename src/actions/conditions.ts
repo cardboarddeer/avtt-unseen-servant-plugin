@@ -2,7 +2,7 @@ import { action, KeyDownEvent, SingletonAction, WillAppearEvent } from "@elgato/
 import { sendAVTTCommand } from "../lib/avtt-client";
 import { AVTT_COMMANDS } from "../lib/avtt-commands";
 import { ConditionSettings } from "../types/action-settings";
-import { getConditionIconDataUrl } from "../lib/condition-icons";
+import { getConditionIconPath } from "../lib/condition-icons";
 
 function getSelectedStatus(settings: ConditionSettings): string {
   if (settings.condition === "__custom__") {
@@ -20,7 +20,7 @@ export class ConditionAction extends SingletonAction<ConditionSettings> {
 
     await ev.action.setTitle(settings.label || status);
 
-    const icon = getConditionIconDataUrl(status);
+    const icon = getConditionIconPath(status);
     if (icon) {
       await ev.action.setImage(icon);
     }
@@ -37,7 +37,7 @@ export class ConditionAction extends SingletonAction<ConditionSettings> {
 
     await ev.action.setTitle(settings.label || status);
 
-    const icon = getConditionIconDataUrl(status);
+    const icon = getConditionIconPath(status);
     if (icon) {
       await ev.action.setImage(icon);
     }

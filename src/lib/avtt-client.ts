@@ -22,3 +22,8 @@ export async function sendAVTTRoll(roll: Record<string, unknown>): Promise<void>
 export async function sendAVTTGameLog(message: Record<string, unknown>): Promise<void> {
   await postToAVTT("/gamelog", message);
 }
+
+export async function getAVTTCombatState(): Promise<any> {
+  const response = await fetch(`${AVTT_BASE_URL}/combat-state`);
+  return response.json();
+}

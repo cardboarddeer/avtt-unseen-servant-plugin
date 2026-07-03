@@ -262,6 +262,21 @@
           "TitleAlignment": "middle"
         }
       ]
+    },
+    {
+      "Name": "Selected PC HP",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.selected-pc-hp",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Display selected PC HP from AboveVTT.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
     }
   ],
   "Category": "AVTT Unseen Servant Plugin",

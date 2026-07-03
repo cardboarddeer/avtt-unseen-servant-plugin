@@ -8,7 +8,7 @@ type GameLogMessageSettings = {
 };
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.game-log-message" })
-export class GameLogMessage extends SingletonAction<GameLogMessageSettings> {
+export class GameLogMessageAction extends SingletonAction<GameLogMessageSettings> {
   override async onKeyDown(ev: any) {
     const settings = ev.payload.settings || {};
 

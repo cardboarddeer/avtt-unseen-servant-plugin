@@ -15,7 +15,7 @@ type RollSelectedFormulaSettings = {
 };
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll" })
-export class IncrementCounter extends SingletonAction<RollSettings> {
+export class RollFormulaAction extends SingletonAction<RollSettings> {
   override onWillAppear(ev: WillAppearEvent<RollSettings>): void | Promise<void> {
     const title = ev.payload.settings.action || "Roll";
     return ev.action.setTitle(title);
@@ -43,7 +43,7 @@ export class IncrementCounter extends SingletonAction<RollSettings> {
 }
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll-selected-formula" })
-export class RollSelectedFormula extends SingletonAction<RollSelectedFormulaSettings> {
+export class MonsterActionRoll extends SingletonAction<RollSelectedFormulaSettings> {
   override async onKeyDown(ev: any) {
     const settings = ev.payload.settings || {};
 

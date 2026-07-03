@@ -1,27 +1,23 @@
 import streamDeck from "@elgato/streamdeck";
 
+import { RollFormulaAction, MonsterActionRoll } from "./actions/roll-formula";
+import { ToggleDaylight } from "./actions/daylight";
+import { ToggleMarker, ClearMarkers } from "./actions/markers";
+import { NextInitiative, PreviousInitiative } from "./actions/initiative";
 import {
-  IncrementCounter,
-  ToggleDaylight,
-  ToggleMarker,
-  ClearMarkers,
-  NextInitiative,
-  PreviousInitiative,
   OpenGameLogTab,
   OpenTokensTab,
   OpenScenesTab,
   OpenSoundsTab,
   OpenJournalTab,
-  OpenSettingsTab,
-  ZoomIn,
-  ZoomOut,
-  RollSelectedFormula,
-  GameLogMessage
-} from "./actions/increment-counter";
+  OpenSettingsTab
+} from "./actions/tabs";
+import { ZoomIn, ZoomOut } from "./actions/zoom";
+import { GameLogMessageAction } from "./actions/game-log-message";
 
 streamDeck.logger.setLevel("trace");
 
-streamDeck.actions.registerAction(new IncrementCounter());
+streamDeck.actions.registerAction(new RollFormulaAction());
 streamDeck.actions.registerAction(new ToggleDaylight());
 streamDeck.actions.registerAction(new ToggleMarker());
 streamDeck.actions.registerAction(new ClearMarkers());
@@ -35,7 +31,7 @@ streamDeck.actions.registerAction(new OpenJournalTab());
 streamDeck.actions.registerAction(new OpenSettingsTab());
 streamDeck.actions.registerAction(new ZoomIn());
 streamDeck.actions.registerAction(new ZoomOut());
-streamDeck.actions.registerAction(new RollSelectedFormula());
-streamDeck.actions.registerAction(new GameLogMessage());
+streamDeck.actions.registerAction(new MonsterActionRoll());
+streamDeck.actions.registerAction(new GameLogMessageAction());
 
 streamDeck.connect();

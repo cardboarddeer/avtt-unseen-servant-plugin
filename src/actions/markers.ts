@@ -1,5 +1,6 @@
 import { action, KeyDownEvent, SingletonAction, WillAppearEvent } from "@elgato/streamdeck";
 import { sendAVTTCommand } from "../lib/avtt-client";
+import { StaticCommandAction } from "./shared/static-command-action";
 
 type MarkerSettings = {
   color?: string;
@@ -26,12 +27,7 @@ export class ToggleMarker extends SingletonAction<MarkerSettings> {
 }
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.clear-markers" })
-export class ClearMarkers extends SingletonAction<{}> {
-  override onWillAppear(ev: WillAppearEvent<{}>): void | Promise<void> {
-    return ev.action.setTitle("Clear\nMarkers");
-  }
-
-  override async onKeyDown(ev: KeyDownEvent<{}>): Promise<void> {
-    await sendAVTTCommand({ command: "clearMarkers" });
-  }
+export class ClearMarkers extends StaticCommandAction {
+  protected title = "Clear\nMarkers";
+  protected command = "clearMarkers";
 }

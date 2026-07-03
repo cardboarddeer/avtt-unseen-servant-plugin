@@ -1,24 +1,14 @@
-import { action, SingletonAction, WillAppearEvent } from "@elgato/streamdeck";
-import { sendAVTTCommand } from "../lib/avtt-client";
+import { action } from "@elgato/streamdeck";
+import { StaticCommandAction } from "./shared/static-command-action";
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.zoom-in" })
-export class ZoomIn extends SingletonAction<{}> {
-  override onWillAppear(ev: WillAppearEvent<{}>) {
-    return ev.action.setTitle("Zoom\nIn");
-  }
-
-  override async onKeyDown() {
-    await sendAVTTCommand({ command: "zoomIn" });
-  }
+export class ZoomIn extends StaticCommandAction {
+  protected title = "Zoom\nIn";
+  protected command = "zoomIn";
 }
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.zoom-out" })
-export class ZoomOut extends SingletonAction<{}> {
-  override onWillAppear(ev: WillAppearEvent<{}>) {
-    return ev.action.setTitle("Zoom\nOut");
-  }
-
-  override async onKeyDown() {
-    await sendAVTTCommand({ command: "zoomOut" });
-  }
+export class ZoomOut extends StaticCommandAction {
+  protected title = "Zoom\nOut";
+  protected command = "zoomOut";
 }

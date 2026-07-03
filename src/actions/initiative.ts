@@ -1,24 +1,14 @@
-import { action, KeyDownEvent, SingletonAction, WillAppearEvent } from "@elgato/streamdeck";
-import { sendAVTTCommand } from "../lib/avtt-client";
+import { action } from "@elgato/streamdeck";
+import { StaticCommandAction } from "./shared/static-command-action";
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.next-initiative" })
-export class NextInitiative extends SingletonAction<{}> {
-  override onWillAppear(ev: WillAppearEvent<{}>): void | Promise<void> {
-    return ev.action.setTitle("Next\nInit");
-  }
-
-  override async onKeyDown(ev: KeyDownEvent<{}>): Promise<void> {
-    await sendAVTTCommand({ command: "nextInitiative" });
-  }
+export class NextInitiative extends StaticCommandAction {
+  protected title = "Next\nInit";
+  protected command = "nextInitiative";
 }
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.previous-initiative" })
-export class PreviousInitiative extends SingletonAction<{}> {
-  override onWillAppear(ev: WillAppearEvent<{}>): void | Promise<void> {
-    return ev.action.setTitle("Prev\nInit");
-  }
-
-  override async onKeyDown(ev: KeyDownEvent<{}>): Promise<void> {
-    await sendAVTTCommand({ command: "previousInitiative" });
-  }
+export class PreviousInitiative extends StaticCommandAction {
+  protected title = "Prev\nInit";
+  protected command = "previousInitiative";
 }

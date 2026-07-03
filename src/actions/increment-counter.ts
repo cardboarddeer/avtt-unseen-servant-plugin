@@ -281,6 +281,7 @@ type RollSettings = {
 type GameLogMessageSettings = {
   title?: string;
   text?: string;
+  headerStyle?: string;
 };
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.game-log-message" })
@@ -295,6 +296,7 @@ export class GameLogMessage extends SingletonAction<GameLogMessageSettings> {
         command: "sendTextToGamelog",
         title: settings.title || "",
         text: settings.text || "",
+        headerStyle: settings.headerStyle || "simple",
         time: Date.now()
       })
     });

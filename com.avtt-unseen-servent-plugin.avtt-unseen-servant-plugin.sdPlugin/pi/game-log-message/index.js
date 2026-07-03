@@ -5,7 +5,8 @@ let settings = {};
 function saveSettings() {
   settings = {
     title: document.getElementById("title").value || "",
-    text: document.getElementById("text").value || ""
+    text: document.getElementById("text").value || "",
+    headerStyle: document.getElementById("headerStyle").value || "simple"
   };
 
   if (websocket && uuid) {
@@ -22,6 +23,7 @@ function loadSettings(payloadSettings = {}) {
 
   document.getElementById("title").value = settings.title || "";
   document.getElementById("text").value = settings.text || "";
+  document.getElementById("headerStyle").value = settings.headerStyle || "simple";
 }
 
 function connectElgatoStreamDeckSocket(inPort, inUuid, inRegisterEvent, inInfo, inActionInfo) {
@@ -42,7 +44,7 @@ function connectElgatoStreamDeckSocket(inPort, inUuid, inRegisterEvent, inInfo, 
 window.connectElgatoStreamDeckSocket = connectElgatoStreamDeckSocket;
 
 window.addEventListener("DOMContentLoaded", () => {
-  ["title", "text"].forEach(id => {
+  ["title", "text", "headerStyle"].forEach(id => {
     document.getElementById(id).addEventListener("input", saveSettings);
     document.getElementById(id).addEventListener("change", saveSettings);
   });

@@ -7,20 +7,28 @@
   <style>
     body { font-family: sans-serif; padding: 12px; color: white; background: #2d2d2d; }
     label { display:block; margin-top:12px; font-size:12px; opacity:.85; }
-    input, textarea { width:100%; box-sizing:border-box; margin-top:4px; padding:6px; }
+    input, textarea, select { width:100%; box-sizing:border-box; margin-top:4px; padding:6px; }
     textarea { min-height:120px; resize: vertical; }
     .hint { font-size:11px; opacity:.65; margin-top:6px; line-height:1.35; }
   </style>
 </head>
 <body>
   <label>Title</label>
-  <input id="title" value="Lair Action" />
+  <input id="title" value="Bane" />
+
+  <label>Header Style</label>
+  <select id="headerStyle">
+    <option value="simple">Simple Top Header</option>
+    <option value="bar">Colored Bar</option>
+    <option value="warning">Warning</option>
+    <option value="readaloud">Read Aloud</option>
+    <option value="none">No Header</option>
+  </select>
 
   <label>Message</label>
-  <textarea id="text">The room begins to shake.</textarea>
+  <textarea id="text">Up to three creatures of your choice that you can see within range must make a Charisma saving throw.</textarea>
 
   <div class="hint">
-    Placeholders supported later: {name}, {hp}, {maxHp}, {ac}, {str}, {dex}, {stealth}, etc.
   </div>
 </body>
 </html>

@@ -48,7 +48,13 @@ export class SelectedPcHpAction extends SingletonAction<SelectedPcHpSettings> {
     try {
       const settings = currentSettings.get(action.id) || {};
       const state = await getAVTTCombatState();
-      await action.setTitle(hpTitle(state, settings.pcName));
+      const pc = findPc(state, settings.pcName);
+      if (pc?.cardImage) {
+        await action.setImage(pc.cardImage);
+        await action.setTitle("");
+      } else {
+        await action.setTitle(hpTitle(state, settings.pcName));
+      }
     } catch {
       await action.setTitle("Bridge\nOffline");
     }

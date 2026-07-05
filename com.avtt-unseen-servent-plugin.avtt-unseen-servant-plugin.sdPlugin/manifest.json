@@ -278,6 +278,22 @@
         }
       ],
       "PropertyInspectorPath": "pi/selected-pc-hp/index.html"
+    },
+    {
+      "Name": "Set Token Size",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.set-token-size",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Set selected AboveVTT token size.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "PropertyInspectorPath": "pi/set-token-size/index.html",
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
     }
   ],
   "Category": "AVTT Unseen Servant Plugin",

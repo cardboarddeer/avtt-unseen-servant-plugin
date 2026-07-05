@@ -1,11 +1,12 @@
 import {
   action,
   DidReceiveSettingsEvent,
+  KeyDownEvent,
   SingletonAction,
   WillAppearEvent,
   WillDisappearEvent
 } from "@elgato/streamdeck";
-import { getAVTTCombatState } from "../lib/avtt-client";
+import { getAVTTCombatState, sendAVTTCommand } from "../lib/avtt-client";
 
 type SelectedPcHpSettings = {
   refreshSeconds?: number;
@@ -13,7 +14,8 @@ type SelectedPcHpSettings = {
 };
 
 const timers = new Map<string, NodeJS.Timeout>();
-const currentSettings = new Map<string, SelectedPcHpSettings>();
+const settingsByAction = new Map<string, SelectedPcHpSettings>();
+const lastImageByAction = new Map<string, string>();
 
 function findPc(state: any, pcName?: string): any {
   if (pcName && Array.isArray(state?.pcs)) {
@@ -44,15 +46,25 @@ function hpTitle(state: any, pcName?: string): string {
 
 @action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.selected-pc-hp" })
 export class SelectedPcHpAction extends SingletonAction<SelectedPcHpSettings> {
-  private async updateTitle(action: any): Promise<void> {
+  private async updateCard(action: any): Promise<void> {
     try {
-      const settings = currentSettings.get(action.id) || {};
+      const settings = settingsByAction.get(action.id) || {};
       const state = await getAVTTCombatState();
       const pc = findPc(state, settings.pcName);
+
       if (pc?.cardImage) {
-        await action.setImage(pc.cardImage);
+        const previous = lastImageByAction.get(action.id);
+
+        if (previous !== pc.cardImage) {
+          lastImageByAction.set(action.id, pc.cardImage);
+          await action.setImage("");
+          await action.setImage(pc.cardImage);
+        }
+
         await action.setTitle("");
       } else {
+        lastImageByAction.delete(action.id);
+        await action.setImage("");
         await action.setTitle(hpTitle(state, settings.pcName));
       }
     } catch {
@@ -60,33 +72,63 @@ export class SelectedPcHpAction extends SingletonAction<SelectedPcHpSettings> {
     }
   }
 
+  private startTimer(action: any, settings: SelectedPcHpSettings): void {
+    const context = action.id;
+
+    const oldTimer = timers.get(context);
+    if (oldTimer) {
+      clearInterval(oldTimer);
+      timers.delete(context);
+    }
+
+    settingsByAction.set(context, settings || {});
+
+    const refreshMs = Math.max(
+      250,
+      Number(settings?.refreshSeconds ?? 0.5) * 1000
+    );
+
+    this.updateCard(action);
+
+    const timer = setInterval(() => {
+      this.updateCard(action);
+    }, refreshMs);
+
+    timers.set(context, timer);
+  }
+
   override async onWillAppear(ev: WillAppearEvent<SelectedPcHpSettings>): Promise<void> {
-    const context = ev.action.id;
-    currentSettings.set(context, ev.payload.settings || {});
-
-    const refreshMs = Math.max(1, Number(ev.payload.settings.refreshSeconds || 1)) * 1000;
-
-    await this.updateTitle(ev.action);
-
-    timers.set(context, setInterval(() => {
-      this.updateTitle(ev.action);
-    }, refreshMs));
+    this.startTimer(ev.action, ev.payload.settings || {});
   }
 
   override async onDidReceiveSettings(ev: DidReceiveSettingsEvent<SelectedPcHpSettings>): Promise<void> {
-    currentSettings.set(ev.action.id, ev.payload.settings || {});
-    await this.updateTitle(ev.action);
+    this.startTimer(ev.action, ev.payload.settings || {});
+  }
+
+  override async onKeyDown(ev: KeyDownEvent<SelectedPcHpSettings>): Promise<void> {
+    const settings = settingsByAction.get(ev.action.id) || ev.payload.settings || {};
+    const pcName = settings.pcName?.trim();
+
+    if (pcName) {
+      await sendAVTTCommand({
+        command: "selectToken",
+        tokenName: pcName
+      });
+    }
+
+    await this.updateCard(ev.action);
   }
 
   override onWillDisappear(ev: WillDisappearEvent<SelectedPcHpSettings>): void {
     const context = ev.action.id;
-    const timer = timers.get(context);
 
+    const timer = timers.get(context);
     if (timer) {
       clearInterval(timer);
       timers.delete(context);
     }
 
-    currentSettings.delete(context);
+    settingsByAction.delete(context);
+    lastImageByAction.delete(context);
   }
 }

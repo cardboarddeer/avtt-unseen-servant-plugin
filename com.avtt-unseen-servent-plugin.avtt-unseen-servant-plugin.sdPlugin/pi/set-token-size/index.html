@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Set Token Size</title>
+</head>
+<body>
+  <label>Token Size</label>
+  <select id="size">
+    <option value="0.5">Tiny</option>
+    <option value="1" selected>Small / Medium</option>
+    <option value="2">Large</option>
+    <option value="3">Huge</option>
+    <option value="4">Gargantuan</option>
+  </select>
+
+  <script>
+    let websocket = null;
+    let uuid = null;
+
+    window.connectElgatoStreamDeckSocket = function(inPort, inUuid, inRegisterEvent, inInfo, inActionInfo) {
+      uuid = inUuid;
+      websocket = new WebSocket("ws://127.0.0.1:" + inPort);
+
+      websocket.onopen = () => {
+        websocket.send(JSON.stringify({ event: inRegisterEvent, uuid }));
+
+        const actionInfo = JSON.parse(inActionInfo || "{}");
+        const settings = actionInfo.payload?.settings || {};
+
+        if (settings.size !== undefined) {
+          document.getElementById("size").value = String(settings.size);
+        }
+      };
+    };
+
+    document.getElementById("size").addEventListener("change", (ev) => {
+      if (!websocket || !uuid) return;
+
+      websocket.send(JSON.stringify({
+        event: "setSettings",
+        context: uuid,
+        payload: {
+          size: Number(ev.target.value)
+        }
+      }));
+    });
+  </script>
+</body>
+</html>

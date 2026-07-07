@@ -36,4 +36,5 @@ export type ConditionSettings = {
   condition?: string;
   customCondition?: string;
   label?: string;
+  removeOnTurnStart?: boolean;
 };

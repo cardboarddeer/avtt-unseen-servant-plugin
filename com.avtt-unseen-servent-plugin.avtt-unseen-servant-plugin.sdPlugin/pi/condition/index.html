@@ -108,10 +108,27 @@
     <input id="label" type="text" placeholder="Optional" />
   </div>
 
+  <div class="field">
+    <label for="removeOnTurnStart">Auto Remove</label>
+    <input id="removeOnTurnStart" type="checkbox" />
+  </div>
+
+  <div class="hint">
+    If checked, this status should remove itself when that token's turn starts in initiative.
+  </div>
+
   <div class="hint">
     Leave Button Label blank to use the status name. Custom SVG icons go in <code>imgs/conditions</code>.
   </div>
 
+  <link rel="stylesheet" href="../../ui/asset-picker/asset-picker.css" />
+
+  <div class="field">
+    <label>Custom Icon</label>
+    <div id="conditionAssetPicker"></div>
+  </div>
+
+  <script src="../../ui/asset-picker/asset-picker.js"></script>
   <script src="index.js"></script>
 </body>
 </html>

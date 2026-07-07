@@ -1,6 +1,7 @@
 let websocket = null;
 let uuid = null;
 let actionInfo = null;
+let selectedAsset = null;
 
 function getConditionEl() {
   return document.getElementById("condition");
@@ -36,8 +37,20 @@ function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, 
     getConditionEl().value = settings.condition || "Prone";
     getCustomConditionEl().value = settings.customCondition || "";
     getLabelEl().value = settings.label || "";
+    selectedAsset = settings.asset || null;
 
     updateCustomVisibility();
+
+    window.AVTTAssetPicker({
+      rootId: "conditionAssetPicker",
+      title: "Custom Condition Icon",
+      type: "conditions",
+      value: selectedAsset,
+      onChange(asset) {
+        selectedAsset = asset;
+        saveSettings();
+      }
+    });
   };
 }
 
@@ -54,7 +67,8 @@ function saveSettings() {
     payload: {
       condition,
       customCondition,
-      label
+      label,
+      asset: selectedAsset
     }
   }));
 

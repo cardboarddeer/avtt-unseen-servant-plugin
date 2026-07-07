@@ -32,7 +32,8 @@ export class ConditionAction extends SingletonAction<ConditionSettings> {
 
     await sendAVTTCommand({
       command: AVTT_COMMANDS.TOGGLE_CONDITION,
-      condition: status
+      condition: status,
+      removeOnTurnStart: settings.removeOnTurnStart === true
     });
 
     await ev.action.setTitle(settings.label || status);

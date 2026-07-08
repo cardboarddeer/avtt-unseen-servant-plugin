@@ -57,6 +57,14 @@
 </head>
 <body>
   <div class="field">
+    <label for="mode">Mode</label>
+    <select id="mode">
+      <option value="condition">Official Condition</option>
+      <option value="customMarker">Custom Marker</option>
+    </select>
+  </div>
+
+  <div id="conditionRow" class="field">
     <label for="condition">Status</label>
     <select id="condition">
       <optgroup label="Conditions">
@@ -92,15 +100,28 @@
         <option value="Hasted">Hasted</option>
       </optgroup>
 
-      <optgroup label="Custom">
-        <option value="__custom__">Custom...</option>
-      </optgroup>
     </select>
   </div>
 
-  <div id="customRow" class="field hidden">
-    <label for="customCondition">Custom Name</label>
-    <input id="customCondition" type="text" placeholder="Hexed, Hunter's Mark, Phase 2..." />
+  <div id="customMarkerColorRow" class="field hidden">
+    <label for="markerColor">Marker Color</label>
+    <select id="markerColor">
+      <option value="#ff0000">Red</option>
+      <option value="#ff8800">Orange</option>
+      <option value="#ffff00">Yellow</option>
+      <option value="#00ff00">Green</option>
+      <option value="#00ffff">Cyan</option>
+      <option value="#0000ff">Blue</option>
+      <option value="#8800ff">Purple</option>
+      <option value="#ff00ff">Magenta</option>
+      <option value="#ffffff">White</option>
+      <option value="#000000">Black</option>
+    </select>
+  </div>
+
+  <div id="customMarkerTextRow" class="field hidden">
+    <label for="markerText">Marker Text</label>
+    <input id="markerText" type="text" placeholder="Hunter's Mark, Hex, Dodging..." />
   </div>
 
   <div class="field">
@@ -118,17 +139,9 @@
   </div>
 
   <div class="hint">
-    Leave Button Label blank to use the status name. Custom SVG icons go in <code>imgs/conditions</code>.
+    Custom Marker mode uses AboveVTT's native colored text markers, so everyone in AboveVTT can see them.
   </div>
 
-  <link rel="stylesheet" href="../../ui/asset-picker/asset-picker.css" />
-
-  <div class="field">
-    <label>Custom Icon</label>
-    <div id="conditionAssetPicker"></div>
-  </div>
-
-  <script src="../../ui/asset-picker/asset-picker.js"></script>
   <script src="index.js"></script>
 </body>
 </html>

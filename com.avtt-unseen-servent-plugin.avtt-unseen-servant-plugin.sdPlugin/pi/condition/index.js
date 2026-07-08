@@ -1,23 +1,37 @@
 let websocket = null;
 let uuid = null;
 let actionInfo = null;
-let selectedAsset = null;
+
+function getModeEl() {
+  return document.getElementById("mode");
+}
 
 function getConditionEl() {
   return document.getElementById("condition");
 }
 
-function getCustomConditionEl() {
-  return document.getElementById("customCondition");
+function getMarkerColorEl() {
+  return document.getElementById("markerColor");
+}
+
+function getMarkerTextEl() {
+  return document.getElementById("markerText");
 }
 
 function getLabelEl() {
   return document.getElementById("label");
 }
 
-function updateCustomVisibility() {
-  const isCustom = getConditionEl().value === "__custom__";
-  document.getElementById("customRow").classList.toggle("hidden", !isCustom);
+function getRemoveOnTurnStartEl() {
+  return document.getElementById("removeOnTurnStart");
+}
+
+function updateVisibility() {
+  const mode = getModeEl().value;
+
+  document.getElementById("conditionRow").classList.toggle("hidden", mode !== "condition");
+  document.getElementById("customMarkerColorRow").classList.toggle("hidden", mode !== "customMarker");
+  document.getElementById("customMarkerTextRow").classList.toggle("hidden", mode !== "customMarker");
 }
 
 function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, inActionInfo) {
@@ -34,47 +48,39 @@ function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, 
 
     const settings = actionInfo.payload.settings || {};
 
+    getModeEl().value = settings.mode || "condition";
     getConditionEl().value = settings.condition || "Prone";
-    getCustomConditionEl().value = settings.customCondition || "";
+    getMarkerColorEl().value = settings.markerColor || "#ff0000";
+    getMarkerTextEl().value = settings.markerText || "";
     getLabelEl().value = settings.label || "";
-    selectedAsset = settings.asset || null;
+    getRemoveOnTurnStartEl().checked = settings.removeOnTurnStart === true;
 
-    updateCustomVisibility();
-
-    window.AVTTAssetPicker({
-      rootId: "conditionAssetPicker",
-      title: "Custom Condition Icon",
-      type: "conditions",
-      value: selectedAsset,
-      onChange(asset) {
-        selectedAsset = asset;
-        saveSettings();
-      }
-    });
+    updateVisibility();
   };
 }
 
 function saveSettings() {
   if (!websocket || !uuid) return;
 
-  const condition = getConditionEl().value;
-  const customCondition = getCustomConditionEl().value;
-  const label = getLabelEl().value;
-
   websocket.send(JSON.stringify({
     event: "setSettings",
     context: uuid,
     payload: {
-      condition,
-      customCondition,
-      label,
-      asset: selectedAsset
+      mode: getModeEl().value,
+      condition: getConditionEl().value,
+      markerColor: getMarkerColorEl().value,
+      markerText: getMarkerTextEl().value,
+      label: getLabelEl().value,
+      removeOnTurnStart: getRemoveOnTurnStartEl().checked
     }
   }));
 
-  updateCustomVisibility();
+  updateVisibility();
 }
 
+getModeEl().addEventListener("change", saveSettings);
 getConditionEl().addEventListener("change", saveSettings);
-getCustomConditionEl().addEventListener("input", saveSettings);
+getMarkerColorEl().addEventListener("change", saveSettings);
+getMarkerTextEl().addEventListener("input", saveSettings);
 getLabelEl().addEventListener("input", saveSettings);
+getRemoveOnTurnStartEl().addEventListener("change", saveSettings);

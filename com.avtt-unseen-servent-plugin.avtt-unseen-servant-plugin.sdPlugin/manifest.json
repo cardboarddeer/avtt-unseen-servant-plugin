@@ -294,6 +294,37 @@
           "TitleAlignment": "middle"
         }
       ]
+    },
+    {
+      "Name": "Toggle Aura",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-aura",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Toggle aura visibility on selected AboveVTT tokens.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Aura Preset",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.aura-preset",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Apply or remove an AboveVTT aura preset on selected tokens.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "PropertyInspectorPath": "pi/aura-preset/index.html",
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
     }
   ],
   "Category": "AVTT Unseen Servant Plugin",

@@ -40,3 +40,23 @@ export type ConditionSettings = {
   label?: string;
   removeOnTurnStart?: boolean;
 };
+
+
+export type AuraPresetSettings = {
+  presetName?: string;
+  preset?: {
+    name?: string;
+    aura1?: {
+      feet?: string;
+      color?: string;
+    };
+    aura2?: {
+      feet?: string;
+      color?: string;
+    };
+    animation?: string;
+  };
+  customAuraMask?: string;
+  customAuraRotate?: boolean;
+  label?: string;
+};

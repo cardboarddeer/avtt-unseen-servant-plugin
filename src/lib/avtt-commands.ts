@@ -18,5 +18,8 @@ export const AVTT_COMMANDS = {
 
   ROLL_SELECTED_FORMULA: "rollSelectedFormula",
   SEND_TEXT_TO_GAMELOG: "sendTextToGamelog",
-  TOGGLE_CONDITION: "toggleCondition"
+  TOGGLE_CONDITION: "toggleCondition",
+
+  TOGGLE_AURA: "toggleAura",
+  TOGGLE_AURA_PRESET: "toggleAuraPreset"
 } as const;

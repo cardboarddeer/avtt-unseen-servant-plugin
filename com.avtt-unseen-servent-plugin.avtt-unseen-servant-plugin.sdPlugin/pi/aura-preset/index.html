@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Aura Preset</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      color: #d8d8d8;
+      background: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+    }
+
+    .field {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    label {
+      color: #bdbdbd;
+      text-align: right;
+    }
+
+    select,
+    input,
+    button {
+      width: 100%;
+      box-sizing: border-box;
+      background: #3a3a3a;
+      color: #ffffff;
+      border: 1px solid #555;
+      border-radius: 4px;
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hint {
+      margin-left: 132px;
+      color: #8f8f8f;
+      font-size: 11px;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="field">
+    <label for="preset">Preset</label>
+    <select id="preset">
+      <option value="">Click Refresh Presets</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="refreshPresets">Presets</label>
+    <button id="refreshPresets">Refresh Presets</button>
+  </div>
+
+  <div class="field">
+    <label for="customAuraMask">Mask URL</label>
+    <input id="customAuraMask" type="text" placeholder="Optional PNG/SVG URL" />
+  </div>
+
+  <div class="field">
+    <label for="customAuraRotate">Rotate Mask</label>
+    <input id="customAuraRotate" type="checkbox" />
+  </div>
+
+  <div class="field">
+    <label for="label">Button Label</label>
+    <input id="label" type="text" placeholder="Optional" />
+  </div>
+
+  <div class="hint">
+    Refresh Presets reads your current AboveVTT aura presets through the bridge.
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

@@ -1,9 +1,15 @@
-# Node.js
+# Dependencies
 node_modules/
 
-# Stream Deck files
-*.sdPlugin/bin
-*.sdPlugin/logs
+# Build output
+dist/
+bin/
+
+# Logs
+*.log
+
 # macOS
 .DS_Store
-**/.DS_Store
+
+# IDE local settings
+.vscode/settings.json

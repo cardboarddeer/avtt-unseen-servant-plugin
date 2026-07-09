@@ -5,6 +5,7 @@ import {
 } from "@elgato/streamdeck";
 
 import { sendAVTTCommand } from "../lib/avtt-client";
+import { AVTT_COMMANDS } from "../lib/avtt-commands";
 
 type Settings = {
   size?: number;
@@ -19,7 +20,7 @@ export class SetTokenSizeAction extends SingletonAction<Settings> {
     const size = Number(ev.payload.settings.size ?? 1);
 
     await sendAVTTCommand({
-      command: "setSelectedTokenSize",
+      command: AVTT_COMMANDS.SET_SELECTED_TOKEN_SIZE,
       size
     });
   }

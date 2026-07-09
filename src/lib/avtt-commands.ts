@@ -19,6 +19,7 @@ export const AVTT_COMMANDS = {
   ROLL_SELECTED_FORMULA: "rollSelectedFormula",
   SEND_TEXT_TO_GAMELOG: "sendTextToGamelog",
   TOGGLE_CONDITION: "toggleCondition",
+  SET_SELECTED_TOKEN_SIZE: "setSelectedTokenSize",
 
   TOGGLE_AURA: "toggleAura",
   TOGGLE_AURA_PRESET: "toggleAuraPreset"

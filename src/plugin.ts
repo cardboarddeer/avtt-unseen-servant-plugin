@@ -3,7 +3,7 @@ import streamDeck from "@elgato/streamdeck";
 import { RollFormulaAction, MonsterActionRoll } from "./actions/roll-formula";
 import { ToggleDaylight } from "./actions/daylight";
 import { ToggleMarker, ClearMarkers } from "./actions/markers";
-import { NextInitiative, PreviousInitiative } from "./actions/initiative";
+import { InitiativeAction } from "./actions/initiative";
 import {
   OpenGameLogTab,
   OpenTokensTab,
@@ -25,8 +25,7 @@ streamDeck.actions.registerAction(new RollFormulaAction());
 streamDeck.actions.registerAction(new ToggleDaylight());
 streamDeck.actions.registerAction(new ToggleMarker());
 streamDeck.actions.registerAction(new ClearMarkers());
-streamDeck.actions.registerAction(new NextInitiative());
-streamDeck.actions.registerAction(new PreviousInitiative());
+streamDeck.actions.registerAction(new InitiativeAction());
 streamDeck.actions.registerAction(new OpenGameLogTab());
 streamDeck.actions.registerAction(new OpenTokensTab());
 streamDeck.actions.registerAction(new OpenScenesTab());

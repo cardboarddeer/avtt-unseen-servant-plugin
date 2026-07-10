@@ -66,25 +66,11 @@
       ]
     },
     {
-      "Name": "Next Initiative",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.next-initiative",
+      "Name": "Initiative",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.initiative",
       "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Move AboveVTT combat tracker to the next initiative turn.",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Previous Initiative",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.previous-initiative",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Move AboveVTT combat tracker to the previous initiative turn.",
+      "Tooltip": "Move AboveVTT combat tracker forward or backward.",
+      "PropertyInspectorPath": "pi/initiative/index.html",
       "Controllers": [
         "Keypad"
       ],

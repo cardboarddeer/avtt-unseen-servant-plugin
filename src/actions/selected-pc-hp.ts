@@ -7,6 +7,7 @@ import {
   WillDisappearEvent
 } from "@elgato/streamdeck";
 import { getAVTTCombatState, sendAVTTCommand } from "../lib/avtt-client";
+import { AVTT_COMMANDS } from "../lib/avtt-commands";
 
 type SelectedPcHpSettings = {
   refreshSeconds?: number;
@@ -111,7 +112,7 @@ export class SelectedPcHpAction extends SingletonAction<SelectedPcHpSettings> {
 
     if (pcName) {
       await sendAVTTCommand({
-        command: "selectToken",
+        command: AVTT_COMMANDS.SELECT_TOKEN,
         tokenName: pcName
       });
     }

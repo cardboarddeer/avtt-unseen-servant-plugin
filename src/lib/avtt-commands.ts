@@ -20,6 +20,7 @@ export const AVTT_COMMANDS = {
   SEND_TEXT_TO_GAMELOG: "sendTextToGamelog",
   TOGGLE_CONDITION: "toggleCondition",
   SET_SELECTED_TOKEN_SIZE: "setSelectedTokenSize",
+  SET_TOKEN_STYLE: "setTokenStyle",
   SELECT_TOKEN: "selectToken",
 
   TOGGLE_AURA: "toggleAura",

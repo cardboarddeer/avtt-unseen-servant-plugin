@@ -193,6 +193,22 @@
       ]
     },
     {
+      "Name": "Token Style",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.token-style",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Set the native AboveVTT style for selected tokens.",
+      "PropertyInspectorPath": "pi/token-style/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
       "Name": "Toggle Aura",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-aura",
       "Icon": "imgs/actions/counter/icon",

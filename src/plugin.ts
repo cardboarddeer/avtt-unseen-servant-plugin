@@ -2,7 +2,7 @@ import streamDeck from "@elgato/streamdeck";
 
 import { RollFormulaAction, MonsterActionRoll } from "./actions/roll-formula";
 import { ToggleDaylight } from "./actions/daylight";
-import { ToggleMarker, ClearMarkers } from "./actions/markers";
+import { ToggleMarker } from "./actions/markers";
 import { InitiativeAction } from "./actions/initiative";
 import { OpenTabAction } from "./actions/tabs";
 import { ZoomIn, ZoomOut } from "./actions/zoom";
@@ -17,7 +17,6 @@ streamDeck.logger.setLevel("trace");
 streamDeck.actions.registerAction(new RollFormulaAction());
 streamDeck.actions.registerAction(new ToggleDaylight());
 streamDeck.actions.registerAction(new ToggleMarker());
-streamDeck.actions.registerAction(new ClearMarkers());
 streamDeck.actions.registerAction(new InitiativeAction());
 streamDeck.actions.registerAction(new OpenTabAction());
 streamDeck.actions.registerAction(new ZoomIn());

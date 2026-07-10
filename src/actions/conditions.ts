@@ -5,6 +5,10 @@ import { ConditionSettings } from "../types/action-settings";
 import { getConditionIconPath } from "../lib/condition-icons";
 
 function getSelectedStatus(settings: ConditionSettings): string {
+  if (settings.mode === "clearMarkers") {
+    return "Clear Markers";
+  }
+
   if (settings.mode === "customMarker") {
     return settings.markerText?.trim() || "Custom Marker";
   }
@@ -52,11 +56,11 @@ export class ConditionAction extends SingletonAction<ConditionSettings> {
 
     const icon = settings.mode === "customMarker"
       ? getMarkerButtonImage(settings.markerColor || "#ff0000")
-      : getConditionIconPath(status);
+      : settings.mode === "clearMarkers"
+        ? ""
+        : getConditionIconPath(status);
 
-    if (icon) {
-      await ev.action.setImage(icon);
-    }
+    await ev.action.setImage(icon || "");
   }
 
   override async onWillAppear(ev: WillAppearEvent<ConditionSettings>): Promise<void> {
@@ -71,14 +75,20 @@ export class ConditionAction extends SingletonAction<ConditionSettings> {
     const settings = ev.payload.settings;
     const status = getSelectedStatus(settings);
 
-    await sendAVTTCommand({
-      command: AVTT_COMMANDS.TOGGLE_CONDITION,
-      mode: settings.mode || "condition",
-      condition: status,
-      markerColor: settings.markerColor || "#ff0000",
-      markerText: settings.markerText?.trim() || status,
-      removeOnTurnStart: settings.removeOnTurnStart === true
-    });
+    if (settings.mode === "clearMarkers") {
+      await sendAVTTCommand({
+        command: AVTT_COMMANDS.CLEAR_MARKERS
+      });
+    } else {
+      await sendAVTTCommand({
+        command: AVTT_COMMANDS.TOGGLE_CONDITION,
+        mode: settings.mode || "condition",
+        condition: status,
+        markerColor: settings.markerColor || "#ff0000",
+        markerText: settings.markerText?.trim() || status,
+        removeOnTurnStart: settings.removeOnTurnStart === true
+      });
+    }
 
     await this.updateButtonAppearance(ev);
   }

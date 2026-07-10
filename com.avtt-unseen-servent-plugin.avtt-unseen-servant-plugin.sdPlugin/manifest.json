@@ -51,21 +51,6 @@
       ]
     },
     {
-      "Name": "Clear Markers",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.clear-markers",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Clear all custom markers from selected AboveVTT tokens.",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
       "Name": "Initiative",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.initiative",
       "Icon": "imgs/actions/counter/icon",

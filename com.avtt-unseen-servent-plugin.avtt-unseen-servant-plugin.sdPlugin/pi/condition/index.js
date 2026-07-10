@@ -32,6 +32,10 @@ function updateVisibility() {
   document.getElementById("conditionRow").classList.toggle("hidden", mode !== "condition");
   document.getElementById("customMarkerColorRow").classList.toggle("hidden", mode !== "customMarker");
   document.getElementById("customMarkerTextRow").classList.toggle("hidden", mode !== "customMarker");
+
+  const clearMarkers = mode === "clearMarkers";
+
+  document.getElementById("removeOnTurnStart").disabled = clearMarkers;
 }
 
 function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, inActionInfo) {

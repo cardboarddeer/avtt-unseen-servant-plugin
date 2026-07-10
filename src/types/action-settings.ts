@@ -33,7 +33,7 @@ export type GameLogMessageSettings = {
 };
 
 export type ConditionSettings = {
-  mode?: "condition" | "customMarker";
+  mode?: "condition" | "customMarker" | "clearMarkers";
   condition?: string;
   markerColor?: string;
   markerText?: string;

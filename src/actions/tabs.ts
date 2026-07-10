@@ -1,39 +1,85 @@
-import { action } from "@elgato/streamdeck";
-import { StaticCommandAction } from "./shared/static-command-action";
+import {
+  action,
+  DidReceiveSettingsEvent,
+  KeyDownEvent,
+  SingletonAction,
+  WillAppearEvent
+} from "@elgato/streamdeck";
+
+import { sendAVTTCommand } from "../lib/avtt-client";
 import { AVTT_COMMANDS } from "../lib/avtt-commands";
 
-@action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-gamelog-tab" })
-export class OpenGameLogTab extends StaticCommandAction {
-  protected title = "Game\nLog";
-  protected command = AVTT_COMMANDS.OPEN_GAME_LOG_TAB;
+type TabName =
+  | "gamelog"
+  | "tokens"
+  | "scenes"
+  | "sounds"
+  | "journal"
+  | "settings";
+
+type TabSettings = {
+  tab?: TabName;
+};
+
+const TAB_COMMANDS: Record<TabName, string> = {
+  gamelog: AVTT_COMMANDS.OPEN_GAME_LOG_TAB,
+  tokens: AVTT_COMMANDS.OPEN_TOKENS_TAB,
+  scenes: AVTT_COMMANDS.OPEN_SCENES_TAB,
+  sounds: AVTT_COMMANDS.OPEN_SOUNDS_TAB,
+  journal: AVTT_COMMANDS.OPEN_JOURNAL_TAB,
+  settings: AVTT_COMMANDS.OPEN_SETTINGS_TAB
+};
+
+const TAB_TITLES: Record<TabName, string> = {
+  gamelog: "Game\nLog",
+  tokens: "Tokens",
+  scenes: "Scenes",
+  sounds: "Sounds",
+  journal: "Journal",
+  settings: "Settings"
+};
+
+function getTab(settings?: TabSettings): TabName {
+  const tab = settings?.tab;
+
+  if (
+    tab === "tokens" ||
+    tab === "scenes" ||
+    tab === "sounds" ||
+    tab === "journal" ||
+    tab === "settings"
+  ) {
+    return tab;
+  }
+
+  return "gamelog";
 }
 
-@action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-tokens-tab" })
-export class OpenTokensTab extends StaticCommandAction {
-  protected title = "Tokens";
-  protected command = AVTT_COMMANDS.OPEN_TOKENS_TAB;
-}
+@action({
+  UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-tab"
+})
+export class OpenTabAction extends SingletonAction<TabSettings> {
+  override onWillAppear(
+    ev: WillAppearEvent<TabSettings>
+  ): void | Promise<void> {
+    return ev.action.setTitle(TAB_TITLES[getTab(ev.payload.settings)]);
+  }
 
-@action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-scenes-tab" })
-export class OpenScenesTab extends StaticCommandAction {
-  protected title = "Scenes";
-  protected command = AVTT_COMMANDS.OPEN_SCENES_TAB;
-}
+  override onDidReceiveSettings(
+    ev: DidReceiveSettingsEvent<TabSettings>
+  ): void | Promise<void> {
+    return ev.action.setTitle(TAB_TITLES[getTab(ev.payload.settings)]);
+  }
 
-@action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-sounds-tab" })
-export class OpenSoundsTab extends StaticCommandAction {
-  protected title = "Sounds";
-  protected command = AVTT_COMMANDS.OPEN_SOUNDS_TAB;
-}
+  override async onKeyDown(
+    ev: KeyDownEvent<TabSettings>
+  ): Promise<void> {
+    const tab = getTab(ev.payload.settings);
 
-@action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-journal-tab" })
-export class OpenJournalTab extends StaticCommandAction {
-  protected title = "Journal";
-  protected command = AVTT_COMMANDS.OPEN_JOURNAL_TAB;
-}
+    await sendAVTTCommand({
+      command: TAB_COMMANDS[tab]
+    });
 
-@action({ UUID: "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-settings-tab" })
-export class OpenSettingsTab extends StaticCommandAction {
-  protected title = "Settings";
-  protected command = AVTT_COMMANDS.OPEN_SETTINGS_TAB;
+    await ev.action.setTitle(TAB_TITLES[tab]);
+  }
 }

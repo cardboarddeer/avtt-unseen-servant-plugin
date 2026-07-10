@@ -4,14 +4,7 @@ import { RollFormulaAction, MonsterActionRoll } from "./actions/roll-formula";
 import { ToggleDaylight } from "./actions/daylight";
 import { ToggleMarker, ClearMarkers } from "./actions/markers";
 import { InitiativeAction } from "./actions/initiative";
-import {
-  OpenGameLogTab,
-  OpenTokensTab,
-  OpenScenesTab,
-  OpenSoundsTab,
-  OpenJournalTab,
-  OpenSettingsTab
-} from "./actions/tabs";
+import { OpenTabAction } from "./actions/tabs";
 import { ZoomIn, ZoomOut } from "./actions/zoom";
 import { GameLogMessageAction } from "./actions/game-log-message";
 import { ConditionAction } from "./actions/conditions";
@@ -26,12 +19,7 @@ streamDeck.actions.registerAction(new ToggleDaylight());
 streamDeck.actions.registerAction(new ToggleMarker());
 streamDeck.actions.registerAction(new ClearMarkers());
 streamDeck.actions.registerAction(new InitiativeAction());
-streamDeck.actions.registerAction(new OpenGameLogTab());
-streamDeck.actions.registerAction(new OpenTokensTab());
-streamDeck.actions.registerAction(new OpenScenesTab());
-streamDeck.actions.registerAction(new OpenSoundsTab());
-streamDeck.actions.registerAction(new OpenJournalTab());
-streamDeck.actions.registerAction(new OpenSettingsTab());
+streamDeck.actions.registerAction(new OpenTabAction());
 streamDeck.actions.registerAction(new ZoomIn());
 streamDeck.actions.registerAction(new ZoomOut());
 streamDeck.actions.registerAction(new MonsterActionRoll());

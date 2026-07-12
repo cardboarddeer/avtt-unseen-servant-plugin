@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Token Image</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      color: #d8d8d8;
+      background: transparent;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      font-size: 13px;
+    }
+
+    .field {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    label {
+      color: #bdbdbd;
+      text-align: right;
+    }
+
+    select,
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      background: #3a3a3a;
+      color: #ffffff;
+      border: 1px solid #555;
+      border-radius: 4px;
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .hint {
+      margin-left: 132px;
+      color: #8f8f8f;
+      font-size: 11px;
+      line-height: 1.3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="field">
+    <label for="mode">Mode</label>
+
+    <select id="mode">
+      <option value="apply">Apply Image URL</option>
+      <option value="reset">Reset to Default Image</option>
+    </select>
+  </div>
+
+  <div id="imageUrlRow" class="field">
+    <label for="imageUrl">Image URL</label>
+
+    <input
+      id="imageUrl"
+      type="url"
+      placeholder="https://example.com/token.png"
+    />
+  </div>
+
+  <div id="imageUrlHint" class="hint">
+    Paste a direct image URL for the selected token.
+  </div>
+
+  <script>
+    let websocket = null;
+    let uuid = null;
+
+    const modeEl = document.getElementById("mode");
+    const imageUrlEl = document.getElementById("imageUrl");
+    const imageUrlRow = document.getElementById("imageUrlRow");
+    const imageUrlHint = document.getElementById("imageUrlHint");
+
+    function updateVisibility() {
+      const showUrl = modeEl.value === "apply";
+
+      imageUrlRow.classList.toggle("hidden", !showUrl);
+      imageUrlHint.classList.toggle("hidden", !showUrl);
+    }
+
+    function saveSettings() {
+      if (!websocket || !uuid) return;
+
+      websocket.send(JSON.stringify({
+        event: "setSettings",
+        context: uuid,
+        payload: {
+          mode: modeEl.value,
+          imageUrl: imageUrlEl.value
+        }
+      }));
+
+      updateVisibility();
+    }
+
+    window.connectElgatoStreamDeckSocket = function(
+      inPort,
+      inUuid,
+      inRegisterEvent,
+      inInfo,
+      inActionInfo
+    ) {
+      uuid = inUuid;
+      websocket = new WebSocket(
+        "ws://127.0.0.1:" + inPort
+      );
+
+      websocket.onopen = () => {
+        websocket.send(JSON.stringify({
+          event: inRegisterEvent,
+          uuid
+        }));
+
+        const actionInfo =
+          JSON.parse(inActionInfo || "{}");
+
+        const settings =
+          actionInfo.payload?.settings || {};
+
+        modeEl.value =
+          settings.mode === "reset"
+            ? "reset"
+            : "apply";
+
+        imageUrlEl.value =
+          settings.imageUrl || "";
+
+        updateVisibility();
+      };
+    };
+
+    modeEl.addEventListener("change", saveSettings);
+    imageUrlEl.addEventListener("input", saveSettings);
+  </script>
+</body>
+</html>

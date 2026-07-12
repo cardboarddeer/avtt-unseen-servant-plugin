@@ -225,6 +225,22 @@
       ]
     },
     {
+      "Name": "Token Image",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.token-image",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Apply a custom image URL or reset the selected AboveVTT token to its default image.",
+      "PropertyInspectorPath": "pi/token-image/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
       "Name": "Toggle Aura",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-aura",
       "Icon": "imgs/actions/counter/icon",

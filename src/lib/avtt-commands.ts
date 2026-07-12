@@ -22,6 +22,8 @@ export const AVTT_COMMANDS = {
   SET_SELECTED_TOKEN_SIZE: "setSelectedTokenSize",
   SET_TOKEN_STYLE: "setTokenStyle",
   SET_TOKEN_HEALTH_VISUAL: "setTokenHealthVisual",
+  APPLY_TOKEN_IMAGE: "applyTokenImage",
+  RESET_TOKEN_IMAGE: "resetTokenImage",
   SELECT_TOKEN: "selectToken",
 
   TOGGLE_AURA: "toggleAura",

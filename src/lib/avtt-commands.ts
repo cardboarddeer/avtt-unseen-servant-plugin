@@ -31,5 +31,5 @@ export const AVTT_COMMANDS = {
 
   TOGGLE_LIGHT: "toggleLight",
   TOGGLE_LIGHT_PRESET: "toggleLightPreset",
-  SET_VISION_PRESET: "setVisionPreset"
+  TOGGLE_VISION_TYPE: "toggleVisionType"
 } as const;

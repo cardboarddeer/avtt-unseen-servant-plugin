@@ -92,10 +92,10 @@ export type LightPresetSettings = {
   label?: string;
 };
 
-export type VisionPresetSettings = {
-  vision?: LightValueSettings;
-  truesight?: LightValueSettings;
-  devilsight?: LightValueSettings;
+export type VisionTypeSettings = {
+  sense?: "vision" | "truesight" | "devilsight";
+  feet?: string;
+  color?: string;
   label?: string;
 };
 

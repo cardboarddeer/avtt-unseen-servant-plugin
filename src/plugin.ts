@@ -17,7 +17,7 @@ import { ToggleAuraAction, AuraPresetAction } from "./actions/auras";
 import {
   ToggleLightAction,
   LightPresetAction,
-  VisionPresetAction
+  VisionTypeAction
 } from "./actions/lights";
 
 streamDeck.logger.setLevel("trace");
@@ -41,6 +41,6 @@ streamDeck.actions.registerAction(new ToggleAuraAction());
 streamDeck.actions.registerAction(new AuraPresetAction());
 streamDeck.actions.registerAction(new ToggleLightAction());
 streamDeck.actions.registerAction(new LightPresetAction());
-streamDeck.actions.registerAction(new VisionPresetAction());
+streamDeck.actions.registerAction(new VisionTypeAction());
 
 streamDeck.connect();

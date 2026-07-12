@@ -303,10 +303,10 @@
       ]
     },
     {
-      "Name": "Vision Preset",
+      "Name": "Vision",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.vision-preset",
       "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Set Darkvision, Truesight, and Devil's Sight.",
+      "Tooltip": "Toggle Darkvision, Truesight, or Devil's Sight without changing the other vision types.",
       "PropertyInspectorPath": "pi/vision-preset/index.html",
       "Controllers": [
         "Keypad"

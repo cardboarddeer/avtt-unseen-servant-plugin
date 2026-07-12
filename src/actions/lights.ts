@@ -10,7 +10,7 @@ import { sendAVTTCommand } from "../lib/avtt-client";
 import { AVTT_COMMANDS } from "../lib/avtt-commands";
 import {
   LightPresetSettings,
-  VisionPresetSettings
+  VisionTypeSettings
 } from "../types/action-settings";
 
 @action({
@@ -115,56 +115,76 @@ export class LightPresetAction
     "com.avtt-unseen-servent-plugin." +
     "avtt-unseen-servant-plugin.vision-preset"
 })
-export class VisionPresetAction
-  extends SingletonAction<VisionPresetSettings> {
+export class VisionTypeAction
+  extends SingletonAction<VisionTypeSettings> {
+
+  private getSense(
+    settings?: VisionTypeSettings
+  ): "vision" | "truesight" | "devilsight" {
+    if (
+      settings?.sense === "truesight" ||
+      settings?.sense === "devilsight"
+    ) {
+      return settings.sense;
+    }
+
+    return "vision";
+  }
+
+  private getDefaultTitle(
+    sense: "vision" | "truesight" | "devilsight",
+    feet: string
+  ): string {
+    const name =
+      sense === "truesight"
+        ? "Truesight"
+        : sense === "devilsight"
+          ? "Devil's\nSight"
+          : "Darkvision";
+
+    return `${name}\n${feet} ft`;
+  }
 
   private updateTitle(
     ev:
-      | WillAppearEvent<VisionPresetSettings>
-      | DidReceiveSettingsEvent<VisionPresetSettings>
-      | KeyDownEvent<VisionPresetSettings>
+      | WillAppearEvent<VisionTypeSettings>
+      | DidReceiveSettingsEvent<VisionTypeSettings>
+      | KeyDownEvent<VisionTypeSettings>
   ): void | Promise<void> {
     const settings = ev.payload.settings || {};
+    const sense = this.getSense(settings);
+    const feet = String(settings.feet || "60");
 
     return ev.action.setTitle(
-      settings.label || "Vision"
+      settings.label ||
+      this.getDefaultTitle(sense, feet)
     );
   }
 
   override onWillAppear(
-    ev: WillAppearEvent<VisionPresetSettings>
+    ev: WillAppearEvent<VisionTypeSettings>
   ): void | Promise<void> {
     return this.updateTitle(ev);
   }
 
   override onDidReceiveSettings(
-    ev: DidReceiveSettingsEvent<VisionPresetSettings>
+    ev: DidReceiveSettingsEvent<VisionTypeSettings>
   ): void | Promise<void> {
     return this.updateTitle(ev);
   }
 
   override async onKeyDown(
-    ev: KeyDownEvent<VisionPresetSettings>
+    ev: KeyDownEvent<VisionTypeSettings>
   ): Promise<void> {
     const settings = ev.payload.settings || {};
 
     await sendAVTTCommand({
-      command: AVTT_COMMANDS.SET_VISION_PRESET,
-
-      vision: settings.vision || {
-        feet: "0",
-        color: "rgba(142, 142, 142, 1)"
-      },
-
-      truesight: settings.truesight || {
-        feet: "0",
-        color: "rgba(142, 142, 142, 1)"
-      },
-
-      devilsight: settings.devilsight || {
-        feet: "0",
-        color: "rgba(142, 142, 142, 1)"
-      }
+      command: AVTT_COMMANDS.TOGGLE_VISION_TYPE,
+      sense: this.getSense(settings),
+      feet: String(settings.feet || "60"),
+      color:
+        settings.color ||
+        "rgba(142, 142, 142, 1)"
     });
 
     await this.updateTitle(ev);

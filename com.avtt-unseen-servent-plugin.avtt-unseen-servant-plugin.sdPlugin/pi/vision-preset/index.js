@@ -1,24 +1,11 @@
 let websocket = null;
 let uuid = null;
-let actionInfo = null;
 
 const DEFAULT_COLOR =
   "rgba(142, 142, 142, 1)";
 
 function el(id) {
   return document.getElementById(id);
-}
-
-function readSense(prefix) {
-  return {
-    feet: String(
-      el(prefix + "Feet").value || "0"
-    ),
-    color: String(
-      el(prefix + "Color").value ||
-      DEFAULT_COLOR
-    )
-  };
 }
 
 function saveSettings() {
@@ -28,9 +15,9 @@ function saveSettings() {
     event: "setSettings",
     context: uuid,
     payload: {
-      vision: readSense("vision"),
-      truesight: readSense("truesight"),
-      devilsight: readSense("devilsight"),
+      sense: el("sense").value,
+      feet: String(el("feet").value || "60"),
+      color: el("color").value || DEFAULT_COLOR,
       label: el("label").value
     }
   }));
@@ -44,7 +31,9 @@ function connectElgatoStreamDeckSocket(
   inActionInfo
 ) {
   uuid = inUUID;
-  actionInfo = JSON.parse(inActionInfo || "{}");
+
+  const actionInfo =
+    JSON.parse(inActionInfo || "{}");
 
   websocket = new WebSocket(
     "ws://127.0.0.1:" + inPort
@@ -59,43 +48,21 @@ function connectElgatoStreamDeckSocket(
     const settings =
       actionInfo.payload?.settings || {};
 
-    el("visionFeet").value =
-      settings.vision?.feet || "0";
+    el("sense").value =
+      settings.sense || "vision";
 
-    el("visionColor").value =
-      settings.vision?.color ||
-      DEFAULT_COLOR;
+    el("feet").value =
+      settings.feet || "60";
 
-    el("truesightFeet").value =
-      settings.truesight?.feet || "0";
-
-    el("truesightColor").value =
-      settings.truesight?.color ||
-      DEFAULT_COLOR;
-
-    el("devilsightFeet").value =
-      settings.devilsight?.feet || "0";
-
-    el("devilsightColor").value =
-      settings.devilsight?.color ||
-      DEFAULT_COLOR;
+    el("color").value =
+      settings.color || DEFAULT_COLOR;
 
     el("label").value =
       settings.label || "";
   };
 }
 
-[
-  "visionFeet",
-  "visionColor",
-  "truesightFeet",
-  "truesightColor",
-  "devilsightFeet",
-  "devilsightColor",
-  "label"
-].forEach(id => {
-  el(id).addEventListener(
-    "input",
-    saveSettings
-  );
-});
+el("sense").addEventListener("change", saveSettings);
+el("feet").addEventListener("input", saveSettings);
+el("color").addEventListener("input", saveSettings);
+el("label").addEventListener("input", saveSettings);

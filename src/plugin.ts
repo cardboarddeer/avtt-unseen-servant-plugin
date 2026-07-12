@@ -14,6 +14,11 @@ import { TokenStyleAction } from "./actions/token-style";
 import { TokenHealthStyleAction } from "./actions/token-health-style";
 import { TokenImageAction } from "./actions/token-image";
 import { ToggleAuraAction, AuraPresetAction } from "./actions/auras";
+import {
+  ToggleLightAction,
+  LightPresetAction,
+  VisionPresetAction
+} from "./actions/lights";
 
 streamDeck.logger.setLevel("trace");
 
@@ -34,5 +39,8 @@ streamDeck.actions.registerAction(new TokenHealthStyleAction());
 streamDeck.actions.registerAction(new TokenImageAction());
 streamDeck.actions.registerAction(new ToggleAuraAction());
 streamDeck.actions.registerAction(new AuraPresetAction());
+streamDeck.actions.registerAction(new ToggleLightAction());
+streamDeck.actions.registerAction(new LightPresetAction());
+streamDeck.actions.registerAction(new VisionPresetAction());
 
 streamDeck.connect();

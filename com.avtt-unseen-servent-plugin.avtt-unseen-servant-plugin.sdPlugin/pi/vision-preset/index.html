@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Vision Preset</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      color: #d8d8d8;
+      background: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+    }
+
+    .field {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    label {
+      color: #bdbdbd;
+      text-align: right;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      background: #3a3a3a;
+      color: #ffffff;
+      border: 1px solid #555;
+      border-radius: 4px;
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+
+    .section {
+      margin: 18px 0 10px 132px;
+      color: #ffffff;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="section">Darkvision</div>
+
+  <div class="field">
+    <label for="visionFeet">Radius</label>
+    <input id="visionFeet" type="number" min="0" value="0" />
+  </div>
+
+  <div class="field">
+    <label for="visionColor">Color</label>
+    <input
+      id="visionColor"
+      type="text"
+      value="rgba(142, 142, 142, 1)"
+    />
+  </div>
+
+  <div class="section">Truesight</div>
+
+  <div class="field">
+    <label for="truesightFeet">Radius</label>
+    <input id="truesightFeet" type="number" min="0" value="0" />
+  </div>
+
+  <div class="field">
+    <label for="truesightColor">Color</label>
+    <input
+      id="truesightColor"
+      type="text"
+      value="rgba(142, 142, 142, 1)"
+    />
+  </div>
+
+  <div class="section">Devil's Sight</div>
+
+  <div class="field">
+    <label for="devilsightFeet">Radius</label>
+    <input id="devilsightFeet" type="number" min="0" value="0" />
+  </div>
+
+  <div class="field">
+    <label for="devilsightColor">Color</label>
+    <input
+      id="devilsightColor"
+      type="text"
+      value="rgba(142, 142, 142, 1)"
+    />
+  </div>
+
+  <div class="field">
+    <label for="label">Button Label</label>
+    <input id="label" type="text" placeholder="Optional" />
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

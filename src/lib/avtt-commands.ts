@@ -27,5 +27,9 @@ export const AVTT_COMMANDS = {
   SELECT_TOKEN: "selectToken",
 
   TOGGLE_AURA: "toggleAura",
-  TOGGLE_AURA_PRESET: "toggleAuraPreset"
+  TOGGLE_AURA_PRESET: "toggleAuraPreset",
+
+  TOGGLE_LIGHT: "toggleLight",
+  TOGGLE_LIGHT_PRESET: "toggleLightPreset",
+  SET_VISION_PRESET: "setVisionPreset"
 } as const;

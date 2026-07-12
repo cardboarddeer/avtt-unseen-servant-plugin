@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Light Preset</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      color: #d8d8d8;
+      background: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+    }
+
+    .field {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    label {
+      color: #bdbdbd;
+      text-align: right;
+    }
+
+    select,
+    input,
+    button {
+      width: 100%;
+      box-sizing: border-box;
+      background: #3a3a3a;
+      color: #ffffff;
+      border: 1px solid #555;
+      border-radius: 4px;
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+
+    input[type="checkbox"] {
+      width: auto;
+      justify-self: start;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .section {
+      margin: 18px 0 10px 132px;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .hint {
+      margin: -2px 0 12px 132px;
+      color: #8f8f8f;
+      font-size: 11px;
+      line-height: 1.3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="field">
+    <label for="preset">Light Preset</label>
+    <select id="preset">
+      <option value="">Click Refresh Presets</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="refreshPresets">Presets</label>
+    <button id="refreshPresets">Refresh Presets</button>
+  </div>
+
+  <div class="section">Optional Light Image</div>
+
+  <div class="field">
+    <label for="animationPreset">Animation</label>
+    <select id="animationPreset">
+      <option value="">Normal AboveVTT Light</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="customLightMask">Custom URL</label>
+    <input
+      id="customLightMask"
+      type="text"
+      placeholder="Optional PNG/SVG URL"
+    />
+  </div>
+
+  <div class="hint">
+    Custom URL overrides the selected animation. Leave both empty for normal AboveVTT light.
+  </div>
+
+  <div class="field">
+    <label for="customLightRotate">Rotate</label>
+    <input id="customLightRotate" type="checkbox" />
+  </div>
+
+  <div class="field">
+    <label for="customLightRpm">Rotation RPM</label>
+    <input
+      id="customLightRpm"
+      type="number"
+      min="0"
+      step="1"
+      placeholder="Optional"
+    />
+  </div>
+
+  <div class="field">
+    <label for="label">Button Label</label>
+    <input id="label" type="text" placeholder="Optional" />
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

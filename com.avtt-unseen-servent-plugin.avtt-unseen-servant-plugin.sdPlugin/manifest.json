@@ -270,6 +270,53 @@
           "TitleAlignment": "middle"
         }
       ]
+    },
+    {
+      "Name": "Toggle Light",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-light",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Toggle the selected AboveVTT token light.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Light Preset",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.light-preset",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Apply an AboveVTT light preset and optional light image.",
+      "PropertyInspectorPath": "pi/light-preset/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Vision Preset",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.vision-preset",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Set Darkvision, Truesight, and Devil's Sight.",
+      "PropertyInspectorPath": "pi/vision-preset/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
     }
   ],
   "Category": "AVTT Unseen Servant Plugin",

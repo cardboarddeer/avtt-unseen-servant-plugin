@@ -60,3 +60,42 @@ export type AuraPresetSettings = {
   customAuraRotate?: boolean;
   label?: string;
 };
+
+export type LightValueSettings = {
+  feet?: string;
+  color?: string;
+};
+
+export type LightPresetSettings = {
+  presetName?: string;
+
+  preset?: {
+    name?: string;
+    light1?: LightValueSettings;
+    light2?: LightValueSettings;
+    blur?: string;
+  };
+
+  animationName?: string;
+
+  animationPreset?: {
+    name?: string;
+    mask?: string;
+    rotate?: boolean;
+    rpm?: string;
+  };
+
+  customLightMask?: string;
+  customLightRotate?: boolean;
+  customLightRpm?: string;
+
+  label?: string;
+};
+
+export type VisionPresetSettings = {
+  vision?: LightValueSettings;
+  truesight?: LightValueSettings;
+  devilsight?: LightValueSettings;
+  label?: string;
+};
+

@@ -21,6 +21,7 @@ export const AVTT_COMMANDS = {
   TOGGLE_CONDITION: "toggleCondition",
   SET_SELECTED_TOKEN_SIZE: "setSelectedTokenSize",
   SET_TOKEN_STYLE: "setTokenStyle",
+  SET_TOKEN_HEALTH_VISUAL: "setTokenHealthVisual",
   SELECT_TOKEN: "selectToken",
 
   TOGGLE_AURA: "toggleAura",

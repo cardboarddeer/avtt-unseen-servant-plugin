@@ -11,6 +11,7 @@ import { ConditionAction } from "./actions/conditions";
 import { SelectedPcHpAction } from "./actions/selected-pc-hp";
 import { SetTokenSizeAction } from "./actions/set-token-size";
 import { TokenStyleAction } from "./actions/token-style";
+import { TokenHealthStyleAction } from "./actions/token-health-style";
 import { ToggleAuraAction, AuraPresetAction } from "./actions/auras";
 
 streamDeck.logger.setLevel("trace");
@@ -28,6 +29,7 @@ streamDeck.actions.registerAction(new ConditionAction());
 streamDeck.actions.registerAction(new SelectedPcHpAction());
 streamDeck.actions.registerAction(new SetTokenSizeAction());
 streamDeck.actions.registerAction(new TokenStyleAction());
+streamDeck.actions.registerAction(new TokenHealthStyleAction());
 streamDeck.actions.registerAction(new ToggleAuraAction());
 streamDeck.actions.registerAction(new AuraPresetAction());
 

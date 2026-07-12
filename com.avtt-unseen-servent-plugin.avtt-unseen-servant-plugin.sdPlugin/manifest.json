@@ -209,6 +209,22 @@
       ]
     },
     {
+      "Name": "Token Health Style",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.token-health-style",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Set the native AboveVTT health visual for selected tokens.",
+      "PropertyInspectorPath": "pi/token-health-style/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
       "Name": "Toggle Aura",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-aura",
       "Icon": "imgs/actions/counter/icon",

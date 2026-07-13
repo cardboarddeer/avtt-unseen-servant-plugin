@@ -26,6 +26,7 @@ export const AVTT_COMMANDS = {
   RESET_TOKEN_IMAGE: "resetTokenImage",
   SELECT_TOKEN: "selectToken",
   MODIFY_SELECTED_TOKEN_HP: "modifySelectedTokenHp",
+  SPAWN_TOKEN_FROM_PATH: "spawnTokenFromPath",
 
   TOGGLE_AURA: "toggleAura",
   TOGGLE_AURA_PRESET: "toggleAuraPreset",

@@ -241,6 +241,22 @@
       ]
     },
     {
+      "Name": "Spawn Token",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.spawn-token",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Spawn one or more tokens from AboveVTT My Tokens.",
+      "PropertyInspectorPath": "pi/spawn-token/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
       "Name": "Token Image",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.token-image",
       "Icon": "imgs/actions/counter/icon",

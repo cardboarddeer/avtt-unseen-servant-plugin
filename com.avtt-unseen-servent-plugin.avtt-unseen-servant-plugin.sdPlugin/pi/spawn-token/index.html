@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Spawn Token</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      color: #d8d8d8;
+      background: transparent;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      font-size: 13px;
+    }
+
+    .field {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    label {
+      color: #bdbdbd;
+      text-align: right;
+    }
+
+    input,
+    select,
+    button {
+      width: 100%;
+      box-sizing: border-box;
+      background: #3a3a3a;
+      color: #ffffff;
+      border: 1px solid #555;
+      border-radius: 4px;
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hint {
+      margin-left: 132px;
+      color: #8f8f8f;
+      font-size: 11px;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    #tokenSelect {
+      max-width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="field">
+    <label for="tokenSearch">Search</label>
+
+    <input
+      id="tokenSearch"
+      type="text"
+      placeholder="Search My Tokens"
+    />
+  </div>
+
+  <div class="field">
+    <label for="tokenSelect">Token</label>
+
+    <select id="tokenSelect">
+      <option value="">
+        Click Refresh Tokens
+      </option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="refreshTokens">Tokens</label>
+
+    <button id="refreshTokens">
+      Refresh Tokens
+    </button>
+  </div>
+
+  <div class="field">
+    <label for="count">Spawn Count</label>
+
+    <input
+      id="count"
+      type="number"
+      min="1"
+      max="50"
+      step="1"
+      value="1"
+    />
+  </div>
+
+  <div class="field">
+    <label for="sizeOverride">Size Override</label>
+
+    <select id="sizeOverride">
+      <option value="">
+        Token Default
+      </option>
+
+      <option value="0.5">Tiny</option>
+      <option value="1">Small / Medium</option>
+      <option value="2">Large</option>
+      <option value="3">Huge</option>
+      <option value="4">Gargantuan</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="label">Button Label</label>
+
+    <input
+      id="label"
+      type="text"
+      placeholder="Optional"
+    />
+  </div>
+
+  <div class="hint">
+    Tokens spawn around the center of the current AboveVTT view.
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

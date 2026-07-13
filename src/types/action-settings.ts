@@ -105,3 +105,11 @@ export type TokenHpModifierSettings = {
   label?: string;
 };
 
+export type SpawnTokenSettings = {
+  tokenPath?: string;
+  tokenName?: string;
+  count?: number;
+  sizeOverride?: number | null;
+  label?: string;
+};
+

@@ -2,22 +2,19 @@ let websocket = null;
 let uuid = null;
 let actionInfo = null;
 
-function connectElgatoStreamDeckSocket(inPort, inUUID, inRegisterEvent, inInfo, inActionInfo) {
-  uuid = inUUID;
-  actionInfo = JSON.parse(inActionInfo);
+function el(id) {
+  return document.getElementById(id);
+}
 
-  websocket = new WebSocket("ws://127.0.0.1:" + inPort);
+function normalizePage(value) {
+  if (
+    value === "reference" ||
+    value === "abilities"
+  ) {
+    return value;
+  }
 
-  websocket.onopen = function () {
-    websocket.send(JSON.stringify({
-      event: inRegisterEvent,
-      uuid
-    }));
-
-    const settings = actionInfo.payload.settings || {};
-    document.getElementById("pcName").value = settings.pcName || "";
-    document.getElementById("refreshSeconds").value = settings.refreshSeconds || 1;
-  };
+  return "combat";
 }
 
 function saveSettings() {
@@ -27,11 +24,73 @@ function saveSettings() {
     event: "setSettings",
     context: uuid,
     payload: {
-      pcName: document.getElementById("pcName").value,
-      refreshSeconds: Number(document.getElementById("refreshSeconds").value || 1)
+      pcName:
+        el("pcName").value,
+
+      page:
+        normalizePage(
+          el("page").value
+        ),
+
+      refreshSeconds:
+        Number(
+          el("refreshSeconds").value ||
+          1
+        )
     }
   }));
 }
 
-document.getElementById("pcName").addEventListener("input", saveSettings);
-document.getElementById("refreshSeconds").addEventListener("input", saveSettings);
+function connectElgatoStreamDeckSocket(
+  inPort,
+  inUUID,
+  inRegisterEvent,
+  inInfo,
+  inActionInfo
+) {
+  uuid = inUUID;
+
+  actionInfo =
+    JSON.parse(inActionInfo || "{}");
+
+  websocket = new WebSocket(
+    "ws://127.0.0.1:" + inPort
+  );
+
+  websocket.onopen = function () {
+    websocket.send(JSON.stringify({
+      event: inRegisterEvent,
+      uuid
+    }));
+
+    const settings =
+      actionInfo.payload?.settings || {};
+
+    el("pcName").value =
+      settings.pcName || "";
+
+    el("page").value =
+      normalizePage(settings.page);
+
+    el("refreshSeconds").value =
+      settings.refreshSeconds ?? 1;
+  };
+}
+
+el("pcName")
+  .addEventListener(
+    "input",
+    saveSettings
+  );
+
+el("page")
+  .addEventListener(
+    "change",
+    saveSettings
+  );
+
+el("refreshSeconds")
+  .addEventListener(
+    "input",
+    saveSettings
+  );

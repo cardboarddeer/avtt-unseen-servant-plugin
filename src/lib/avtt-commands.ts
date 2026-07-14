@@ -28,6 +28,9 @@ export const AVTT_COMMANDS = {
   MODIFY_SELECTED_TOKEN_HP: "modifySelectedTokenHp",
   SPAWN_TOKEN_FROM_PATH: "spawnTokenFromPath",
 
+  APPLY_PC_STAT_EFFECT: "applyPcStatEffect",
+  CLEAR_PC_STAT_EFFECTS: "clearPcStatEffects",
+
   TOGGLE_AURA: "toggleAura",
   TOGGLE_AURA_PRESET: "toggleAuraPreset",
 

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Clear PC Effects</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      color: #d8d8d8;
+      background: transparent;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      font-size: 13px;
+    }
+
+    .field {
+      display: grid;
+      grid-template-columns: 115px 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    label {
+      text-align: right;
+      color: #bdbdbd;
+    }
+
+    select {
+      width: 100%;
+      min-height: 28px;
+    }
+
+    #statField.hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="field">
+    <label for="scope">Clear</label>
+
+    <select id="scope">
+      <option value="stat">Specific Stat</option>
+      <option value="all">All Stats</option>
+    </select>
+  </div>
+
+  <div class="field" id="statField">
+    <label for="stat">Stat</label>
+
+    <select id="stat">
+      <option value="armorClass">Armor Class</option>
+      <option value="speed">Speed</option>
+      <option value="maxHp">Maximum HP</option>
+      <option value="STR">Strength</option>
+      <option value="DEX">Dexterity</option>
+      <option value="CON">Constitution</option>
+      <option value="INT">Intelligence</option>
+      <option value="WIS">Wisdom</option>
+      <option value="CHA">Charisma</option>
+    </select>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

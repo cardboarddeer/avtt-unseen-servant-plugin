@@ -17,6 +17,11 @@ import { SpawnTokenAction } from "./actions/spawn-token";
 import { TokenImageAction } from "./actions/token-image";
 import { ToggleAuraAction, AuraPresetAction } from "./actions/auras";
 import {
+  PcStatEffectAction,
+  ClearPcEffectsAction
+} from "./actions/pc-stat-effects";
+
+import {
   ToggleLightAction,
   LightPresetAction,
   VisionTypeAction
@@ -46,5 +51,7 @@ streamDeck.actions.registerAction(new AuraPresetAction());
 streamDeck.actions.registerAction(new ToggleLightAction());
 streamDeck.actions.registerAction(new LightPresetAction());
 streamDeck.actions.registerAction(new VisionTypeAction());
+streamDeck.actions.registerAction(new PcStatEffectAction());
+streamDeck.actions.registerAction(new ClearPcEffectsAction());
 
 streamDeck.connect();

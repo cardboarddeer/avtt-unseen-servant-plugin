@@ -349,6 +349,38 @@
           "TitleAlignment": "middle"
         }
       ]
+    },
+    {
+      "Name": "PC Stat Effect",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.pc-stat-effect",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Apply a persistent stat effect to the selected PC.",
+      "PropertyInspectorPath": "pi/pc-stat-effect/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Clear PC Effects",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.clear-pc-effects",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Clear one or all stat effects from the selected PC.",
+      "PropertyInspectorPath": "pi/clear-pc-effects/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
     }
   ],
   "Category": "AVTT Unseen Servant Plugin",

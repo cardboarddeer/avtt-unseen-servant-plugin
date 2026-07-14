@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>PC Stat Effect</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      color: #d8d8d8;
+      background: transparent;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      font-size: 13px;
+    }
+
+    .field {
+      display: grid;
+      grid-template-columns: 115px 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    label {
+      text-align: right;
+      color: #bdbdbd;
+    }
+
+    select,
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 28px;
+    }
+
+    .hint {
+      margin-left: 127px;
+      color: #8f8f8f;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="field">
+    <label for="stat">Stat</label>
+
+    <select id="stat">
+      <option value="armorClass">Armor Class</option>
+      <option value="speed">Speed</option>
+      <option value="maxHp">Maximum HP</option>
+      <option value="STR">Strength</option>
+      <option value="DEX">Dexterity</option>
+      <option value="CON">Constitution</option>
+      <option value="INT">Intelligence</option>
+      <option value="WIS">Wisdom</option>
+      <option value="CHA">Charisma</option>
+    </select>
+  </div>
+
+  <div class="field" id="acFieldRow">
+    <label for="acField">AC Field</label>
+
+    <select id="acField">
+      <option value="Override AC">
+        Override AC
+      </option>
+
+      <option value="Override Base Armor + DEX">
+        Override Base Armor + DEX
+      </option>
+
+      <option value="Additional Magic Bonus">
+        Additional Magic Bonus
+      </option>
+
+      <option value="Additional Misc Bonus">
+        Additional Misc Bonus
+      </option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="operation">Operation</label>
+
+    <select id="operation">
+      <option value="add">Add</option>
+      <option value="subtract">Subtract</option>
+      <option value="multiply">Multiply</option>
+      <option value="divide">Divide</option>
+      <option value="set">Set Value</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="value">Value</label>
+    <input id="value" type="number" step="any" />
+  </div>
+
+  <div class="field">
+    <label for="effectName">Effect Name</label>
+
+    <input
+      id="effectName"
+      type="text"
+      placeholder="Shield, Haste, Curse..."
+    />
+  </div>
+
+  <div class="hint">
+    Buttons with the same stat and effect name update the same effect.
+    Different names can stack.
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

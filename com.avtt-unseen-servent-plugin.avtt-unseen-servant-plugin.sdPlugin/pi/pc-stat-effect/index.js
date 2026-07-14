@@ -1,4 +1,4 @@
-function updateAcFieldVisibility() {
+function updateConditionalFields() {
   const stat =
     document.getElementById("stat").value;
 
@@ -8,6 +8,13 @@ function updateAcFieldVisibility() {
       stat === "armorClass"
         ? "grid"
         : "none";
+
+  document
+    .getElementById("movementTypeRow")
+    .style.display =
+      stat === "speed"
+        ? "grid"
+        : "none";
 }
 
 let websocket = null;
@@ -15,7 +22,7 @@ let uuid = null;
 let settings = {};
 
 function saveSettings() {
-  updateAcFieldVisibility();
+  updateConditionalFields();
 
   settings = {
     stat:
@@ -26,6 +33,9 @@ function saveSettings() {
 
     acField:
       document.getElementById("acField").value,
+
+    movementType:
+      document.getElementById("movementType").value,
 
     value:
       document.getElementById("value").value,
@@ -57,6 +67,9 @@ function loadSettings(
   document.getElementById("acField").value =
     settings.acField || "Override AC";
 
+  document.getElementById("movementType").value =
+    settings.movementType || "walking";
+
   document.getElementById("value").value =
     settings.value ?? 1;
 
@@ -64,7 +77,7 @@ function loadSettings(
     settings.effectName ||
     "Stream Deck Effect";
 
-  updateAcFieldVisibility();
+  updateConditionalFields();
 }
 
 function connectElgatoStreamDeckSocket(
@@ -107,6 +120,7 @@ window.addEventListener(
     [
       "stat",
       "acField",
+      "movementType",
       "operation",
       "value",
       "effectName"

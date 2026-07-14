@@ -38,12 +38,20 @@ type PcAcField =
   | "Additional Magic Bonus"
   | "Additional Misc Bonus";
 
+type PcMovementType =
+  | "walking"
+  | "burrowing"
+  | "climbing"
+  | "flying"
+  | "swimming";
+
 type PcStatEffectSettings = {
   stat?: PcEffectStat;
   operation?: PcEffectOperation;
   value?: number | string;
   effectName?: string;
   acField?: PcAcField;
+  movementType?: PcMovementType;
 };
 
 type ClearPcEffectsSettings = {
@@ -195,6 +203,10 @@ export class PcStatEffectAction
       acField:
         settings.acField ||
         "Override AC",
+
+      movementType:
+        settings.movementType ||
+        "walking",
 
       effectId:
         `${stat}:${effectName}`

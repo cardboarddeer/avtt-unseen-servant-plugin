@@ -16,8 +16,10 @@ import { AVTT_COMMANDS } from "../lib/avtt-commands";
 
 type TrackerPage =
   | "combat"
-  | "reference"
-  | "abilities";
+  | "reference1"
+  | "reference2"
+  | "abilities1"
+  | "abilities2";
 
 type SelectedPcHpSettings = {
   refreshSeconds?: number;
@@ -34,12 +36,20 @@ const settingsByAction =
 const lastImageByAction =
   new Map<string, string>();
 
+const showSavesByAction =
+  new Set<string>();
+
+const saveModeTimers =
+  new Map<string, NodeJS.Timeout>();
+
 function getTrackerPage(
   settings?: SelectedPcHpSettings
 ): TrackerPage {
   if (
-    settings?.page === "reference" ||
-    settings?.page === "abilities"
+    settings?.page === "reference1" ||
+    settings?.page === "reference2" ||
+    settings?.page === "abilities1" ||
+    settings?.page === "abilities2"
   ) {
     return settings.page;
   }
@@ -85,11 +95,17 @@ function fallbackTitle(
   const page =
     getTrackerPage(settings);
 
-  if (page === "reference") {
+  if (
+    page === "reference1" ||
+    page === "reference2"
+  ) {
     return `${pc.name || "PC"}\nReference`;
   }
 
-  if (page === "abilities") {
+  if (
+    page === "abilities1" ||
+    page === "abilities2"
+  ) {
     return `${pc.name || "PC"}\nAbilities`;
   }
 
@@ -130,7 +146,22 @@ export class SelectedPcHpAction
       const page =
         getTrackerPage(settings);
 
+      const showSaves =
+        showSavesByAction.has(
+          action.id
+        );
+
+      const imagePage =
+        showSaves &&
+        (
+          page === "abilities1" ||
+          page === "abilities2"
+        )
+          ? `${page}Save`
+          : page;
+
       const image =
+        pc?.cardImages?.[imagePage] ||
         pc?.cardImages?.[page] ||
         pc?.cardImage ||
         "";
@@ -236,9 +267,74 @@ export class SelectedPcHpAction
     ev: KeyDownEvent<SelectedPcHpSettings>
   ): Promise<void> {
     const settings =
-      settingsByAction.get(ev.action.id) ||
+      settingsByAction.get(
+        ev.action.id
+      ) ||
       ev.payload.settings ||
       {};
+
+    const page =
+      getTrackerPage(settings);
+
+    if (
+      page === "abilities1" ||
+      page === "abilities2"
+    ) {
+      const context =
+        ev.action.id;
+
+      const existingTimer =
+        saveModeTimers.get(
+          context
+        );
+
+      if (existingTimer) {
+        clearTimeout(
+          existingTimer
+        );
+      }
+
+      showSavesByAction.add(
+        context
+      );
+
+      lastImageByAction.delete(
+        context
+      );
+
+      await this.updateCard(
+        ev.action
+      );
+
+      const timer =
+        setTimeout(
+          async () => {
+            showSavesByAction.delete(
+              context
+            );
+
+            saveModeTimers.delete(
+              context
+            );
+
+            lastImageByAction.delete(
+              context
+            );
+
+            await this.updateCard(
+              ev.action
+            );
+          },
+          3000
+        );
+
+      saveModeTimers.set(
+        context,
+        timer
+      );
+
+      return;
+    }
 
     const pcName =
       settings.pcName?.trim();
@@ -282,5 +378,24 @@ export class SelectedPcHpAction
     lastImageByAction.delete(
       context
     );
+
+    showSavesByAction.delete(
+      context
+    );
+
+    const saveTimer =
+      saveModeTimers.get(
+        context
+      );
+
+    if (saveTimer) {
+      clearTimeout(
+        saveTimer
+      );
+
+      saveModeTimers.delete(
+        context
+      );
+    }
   }
 }

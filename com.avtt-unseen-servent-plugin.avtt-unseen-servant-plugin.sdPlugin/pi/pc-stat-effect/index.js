@@ -15,6 +15,17 @@ function updateConditionalFields() {
       stat === "speed"
         ? "grid"
         : "none";
+
+  const abilityStats =
+    new Set([
+      "STR",
+      "DEX",
+      "CON",
+      "INT",
+      "WIS",
+      "CHA"
+    ]);
+
 }
 
 let websocket = null;
@@ -69,6 +80,7 @@ function loadSettings(
 
   document.getElementById("movementType").value =
     settings.movementType || "walking";
+
 
   document.getElementById("value").value =
     settings.value ?? 1;

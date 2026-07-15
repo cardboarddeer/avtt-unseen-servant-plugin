@@ -8,8 +8,10 @@ function el(id) {
 
 function normalizePage(value) {
   if (
-    value === "reference" ||
-    value === "abilities"
+    value === "reference1" ||
+    value === "reference2" ||
+    value === "abilities1" ||
+    value === "abilities2"
   ) {
     return value;
   }

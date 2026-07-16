@@ -161,6 +161,22 @@
       ]
     },
     {
+      "Name": "PC Roll Buff",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.pc-roll-buff",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Apply a dynamically discovered AboveVTT roll buff or debuff to the selected PC.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "PropertyInspectorPath": "pi/pc-roll-buff/index.html",
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
       "Name": "PC HP",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.selected-pc-hp",
       "Icon": "imgs/actions/counter/icon",

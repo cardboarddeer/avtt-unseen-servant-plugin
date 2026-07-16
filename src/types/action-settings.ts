@@ -113,3 +113,13 @@ export type SpawnTokenSettings = {
   label?: string;
 };
 
+
+export type PcRollBuffSettings = {
+  category?: string;
+  buff?: string;
+  buffLabel?: string;
+  buffType?: "checkbox" | "select";
+  value?: string;
+  enabled?: boolean;
+  label?: string;
+};

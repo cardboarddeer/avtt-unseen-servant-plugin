@@ -31,6 +31,8 @@ export const AVTT_COMMANDS = {
   APPLY_PC_STAT_EFFECT: "applyPcStatEffect",
   CLEAR_PC_STAT_EFFECTS: "clearPcStatEffects",
 
+  APPLY_PC_ROLL_BUFF: "applyPcRollBuff",
+
   TOGGLE_AURA: "toggleAura",
   TOGGLE_AURA_PRESET: "toggleAuraPreset",
 

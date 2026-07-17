@@ -123,3 +123,17 @@ export type PcRollBuffSettings = {
   enabled?: boolean;
   label?: string;
 };
+
+export type PcRollSettingSettings = {
+  setting?:
+    | "versatile"
+    | "crit"
+    | "critRange"
+    | "hitRoll"
+    | "damageRoll"
+    | "checkRoll"
+    | "saveRoll";
+
+  value?: string;
+  label?: string;
+};

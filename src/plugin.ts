@@ -26,6 +26,10 @@ import {
 } from "./actions/pc-roll-buff";
 
 import {
+  PcRollSettingAction
+} from "./actions/pc-roll-settings";
+
+import {
   ToggleLightAction,
   LightPresetAction,
   VisionTypeAction
@@ -58,5 +62,6 @@ streamDeck.actions.registerAction(new VisionTypeAction());
 streamDeck.actions.registerAction(new PcStatEffectAction());
 streamDeck.actions.registerAction(new ClearPcEffectsAction());
 streamDeck.actions.registerAction(new PcRollBuffAction());
+streamDeck.actions.registerAction(new PcRollSettingAction());
 
 streamDeck.connect();

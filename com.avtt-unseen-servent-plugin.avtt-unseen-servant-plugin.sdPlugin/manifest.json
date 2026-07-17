@@ -177,6 +177,22 @@
       ]
     },
     {
+      "Name": "PC Roll Settings",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.pc-roll-setting",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Change an AboveVTT roll setting for the selected PC.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "PropertyInspectorPath": "pi/pc-roll-setting/index.html",
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
       "Name": "PC HP",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.selected-pc-hp",
       "Icon": "imgs/actions/counter/icon",

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>PC Roll Settings</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      color: #d8d8d8;
+      background: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+    }
+
+    .field {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    label {
+      color: #bdbdbd;
+      text-align: right;
+    }
+
+    select,
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      background: #3a3a3a;
+      color: #ffffff;
+      border: 1px solid #555;
+      border-radius: 4px;
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+
+    .hint {
+      margin-left: 132px;
+      color: #8f8f8f;
+      font-size: 11px;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="field">
+    <label for="setting">Setting</label>
+
+    <select id="setting">
+      <option value="versatile">
+        Roll Versatile Weapons
+      </option>
+
+      <option value="crit">
+        Roll Crit Type
+      </option>
+
+      <option value="critRange">
+        Roll Crit Range
+      </option>
+
+      <option value="hitRoll">
+        Added to Attacks
+      </option>
+
+      <option value="damageRoll">
+        Added to Damage
+      </option>
+
+      <option value="checkRoll">
+        Added to Ability Checks
+      </option>
+
+      <option value="saveRoll">
+        Added to Saves
+      </option>
+    </select>
+  </div>
+
+  <div id="selectValueRow" class="field">
+    <label for="selectValue">Value</label>
+
+    <select id="selectValue"></select>
+  </div>
+
+  <div id="numberValueRow" class="field hidden">
+    <label for="numberValue">Value</label>
+
+    <input
+      id="numberValue"
+      type="number"
+      min="1"
+      max="20"
+      step="1"
+    />
+  </div>
+
+  <div id="textValueRow" class="field hidden">
+    <label for="textValue">Value</label>
+
+    <input
+      id="textValue"
+      type="text"
+      placeholder="+1d4, -2, PB..."
+    />
+  </div>
+
+  <div class="field">
+    <label for="label">Button Label</label>
+
+    <input
+      id="label"
+      type="text"
+      placeholder="Optional"
+    />
+  </div>
+
+  <div class="hint">
+    This button updates the selected PC's AboveVTT roll setting.
+    The character sheet does not need to be open when the button is pressed.
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

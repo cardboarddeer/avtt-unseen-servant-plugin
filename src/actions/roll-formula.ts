@@ -12,24 +12,182 @@ export class RollFormulaAction extends SingletonAction<RollSettings> {
     return ev.action.setTitle(title);
   }
 
-  override async onKeyDown(ev: KeyDownEvent<RollSettings>): Promise<void> {
-    const settings = ev.payload.settings;
+  override async onKeyDown(
+    ev: KeyDownEvent<RollSettings>
+  ): Promise<void> {
+    const settings =
+      ev.payload.settings || {};
 
-    let rollType = settings.rollType || "check";
+    const usesNewRollSettings =
+      settings.diceType !== undefined ||
+      settings.numberOfDice !== undefined ||
+      settings.bonus !== undefined ||
+      settings.promptForNumberOfDice === true ||
+      settings.promptForBonus === true;
 
-    if (rollType === "damage" && settings.damageType) {
-      rollType = settings.damageType.toLowerCase() + " damage";
+    /*
+     * Preserve existing buttons created before the Property Inspector
+     * redesign. Those buttons may only contain an expression setting.
+     */
+    if (
+      !usesNewRollSettings &&
+      settings.expression
+    ) {
+      let legacyRollType =
+        settings.rollType ||
+        "check";
+
+      if (
+        legacyRollType === "damage" &&
+        settings.damageType
+      ) {
+        legacyRollType =
+          settings.damageType.toLowerCase() +
+          " damage";
+      }
+
+      await sendAVTTRoll({
+        expression:
+          settings.expression,
+
+        rollType:
+          legacyRollType,
+
+        action:
+          settings.action ||
+          "Stream Deck"
+      });
+
+      await ev.action.setTitle(
+        settings.action ||
+        settings.expression
+      );
+
+      return;
     }
 
-    const roll = {
-      expression: settings.expression || "1d20",
-      rollType,
-      action: settings.action || "Stream Deck"
-    };
+    const diceType =
+      settings.diceType ||
+      "d20";
 
-    await sendAVTTRoll(roll);
+    const numberOfDice =
+      Number(
+        settings.numberOfDice ?? 1
+      );
 
-    await ev.action.setTitle(settings.action || roll.expression);
+    const bonus =
+      Number(
+        settings.bonus ?? 0
+      );
+
+    if (
+      settings.promptForNumberOfDice !== true &&
+      (
+        !Number.isFinite(numberOfDice) ||
+        numberOfDice < 1
+      )
+    ) {
+      await ev.action.showAlert();
+      return;
+    }
+
+    if (
+      settings.promptForBonus !== true &&
+      !Number.isFinite(bonus)
+    ) {
+      await ev.action.showAlert();
+      return;
+    }
+
+    await sendAVTTCommand({
+      command:
+        AVTT_COMMANDS.ROLL_WITH_PROMPT,
+
+      diceType,
+
+      numberOfDice:
+        Number.isFinite(numberOfDice)
+          ? numberOfDice
+          : 1,
+
+      bonus:
+        Number.isFinite(bonus)
+          ? bonus
+          : 0,
+
+      ...(
+        settings.promptForNumberOfDice === true
+          ? {
+              numberOfDicePrompt: {
+                title:
+                  "Number of Dice",
+
+                label:
+                  `How many ${diceType}s should be rolled?`,
+
+                placeholder:
+                  "1",
+
+                defaultValue:
+                  Number.isFinite(numberOfDice)
+                    ? numberOfDice
+                    : 1,
+
+                min:
+                  1
+              }
+            }
+          : {}
+      ),
+
+      ...(
+        settings.promptForBonus === true
+          ? {
+              bonusPrompt: {
+                title:
+                  "Roll Bonus",
+
+                label:
+                  "Enter the roll bonus",
+
+                placeholder:
+                  "0",
+
+                defaultValue:
+                  Number.isFinite(bonus)
+                    ? bonus
+                    : 0
+              }
+            }
+          : {}
+      ),
+
+      rollType:
+        settings.rollType ||
+        "check",
+
+      action:
+        settings.action ||
+        "Stream Deck",
+
+      damageType:
+        settings.damageType
+    });
+
+    const expressionPreview =
+      `${Math.max(
+        1,
+        Math.floor(
+          Number.isFinite(numberOfDice)
+            ? numberOfDice
+            : 1
+        )
+      )}${diceType}`;
+
+    await ev.action.setTitle(
+      settings.action ||
+      expressionPreview
+    );
   }
 }
 

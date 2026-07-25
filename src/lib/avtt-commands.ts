@@ -16,6 +16,7 @@ export const AVTT_COMMANDS = {
   ZOOM_IN: "zoomIn",
   ZOOM_OUT: "zoomOut",
 
+  ROLL_WITH_PROMPT: "rollWithPrompt",
   ROLL_SELECTED_FORMULA: "rollSelectedFormula",
   SEND_TEXT_TO_GAMELOG: "sendTextToGamelog",
   TOGGLE_CONDITION: "toggleCondition",

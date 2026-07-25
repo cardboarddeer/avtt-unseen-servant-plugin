@@ -26,6 +26,15 @@ function updateConditionalFields() {
       "CHA"
     ]);
 
+  const promptForValue =
+    document
+      .getElementById("promptForValue")
+      .checked;
+
+  document
+    .getElementById("value")
+    .disabled =
+      promptForValue;
 }
 
 let websocket = null;
@@ -50,6 +59,11 @@ function saveSettings() {
 
     value:
       document.getElementById("value").value,
+
+    promptForValue:
+      document
+        .getElementById("promptForValue")
+        .checked,
 
     effectName:
       document.getElementById("effectName").value
@@ -84,6 +98,11 @@ function loadSettings(
 
   document.getElementById("value").value =
     settings.value ?? 1;
+
+  document
+    .getElementById("promptForValue")
+    .checked =
+      settings.promptForValue === true;
 
   document.getElementById("effectName").value =
     settings.effectName ||
@@ -135,6 +154,7 @@ window.addEventListener(
       "movementType",
       "operation",
       "value",
+      "promptForValue",
       "effectName"
     ].forEach(id => {
       const element =

@@ -49,6 +49,7 @@ type PcStatEffectSettings = {
   stat?: PcEffectStat;
   operation?: PcEffectOperation;
   value?: number | string;
+  promptForValue?: boolean;
   effectName?: string;
   acField?: PcAcField;
   movementType?: PcMovementType;

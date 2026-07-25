@@ -175,12 +175,18 @@ export class PcStatEffectAction
       settings.operation ||
       "add";
 
+    const promptForValue =
+      settings.promptForValue === true;
+
     const value =
       Number(
         settings.value ?? 1
       );
 
-    if (!Number.isFinite(value)) {
+    if (
+      !promptForValue &&
+      !Number.isFinite(value)
+    ) {
       await ev.action.showAlert();
       return;
     }
@@ -198,7 +204,32 @@ export class PcStatEffectAction
 
       stat,
       operation,
-      value,
+
+      ...(
+        promptForValue
+          ? {
+              valuePrompt: {
+                title:
+                  `${statLabel(stat)} Value`,
+
+                label:
+                  `Enter the value to ${operation} ` +
+                  `${statLabel(stat)}`,
+
+                placeholder:
+                  "Enter a number",
+
+                defaultValue:
+                  Number.isFinite(value)
+                    ? value
+                    : undefined
+              }
+            }
+          : {
+              value
+            }
+      ),
+
       effectName,
 
       acField:

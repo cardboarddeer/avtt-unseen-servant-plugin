@@ -5,6 +5,22 @@ export type MarkerSettings = {
 
 export type RollSettings = {
   expression?: string;
+
+  diceType?:
+    | "d4"
+    | "d6"
+    | "d8"
+    | "d10"
+    | "d12"
+    | "d20"
+    | "d100";
+
+  numberOfDice?: number | string;
+  promptForNumberOfDice?: boolean;
+
+  bonus?: number | string;
+  promptForBonus?: boolean;
+
   rollType?: string;
   action?: string;
   damageType?: string;

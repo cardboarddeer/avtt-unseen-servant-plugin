@@ -8,8 +8,52 @@
 
 <body>
 
-  <sdpi-item label="Dice">
-    <sdpi-textfield setting="expression" placeholder="1d20+5"></sdpi-textfield>
+  <sdpi-item label="Dice Type">
+    <sdpi-select setting="diceType" default="d20">
+      <option value="d4">d4</option>
+      <option value="d6">d6</option>
+      <option value="d8">d8</option>
+      <option value="d10">d10</option>
+      <option value="d12">d12</option>
+      <option value="d20">d20</option>
+      <option value="d100">d100</option>
+    </sdpi-select>
+  </sdpi-item>
+
+  <sdpi-item label="Number of Dice">
+    <sdpi-textfield
+      id="numberOfDice"
+      setting="numberOfDice"
+      type="number"
+      default="1"
+      placeholder="1"
+    ></sdpi-textfield>
+  </sdpi-item>
+
+  <sdpi-item label="">
+    <sdpi-checkbox
+      id="promptForNumberOfDice"
+      setting="promptForNumberOfDice"
+      label="Prompt for Number of Dice"
+    ></sdpi-checkbox>
+  </sdpi-item>
+
+  <sdpi-item label="Bonus">
+    <sdpi-textfield
+      id="bonus"
+      setting="bonus"
+      type="number"
+      default="0"
+      placeholder="0"
+    ></sdpi-textfield>
+  </sdpi-item>
+
+  <sdpi-item label="">
+    <sdpi-checkbox
+      id="promptForBonus"
+      setting="promptForBonus"
+      label="Prompt for Bonus"
+    ></sdpi-checkbox>
   </sdpi-item>
 
   <sdpi-item label="Roll Type">
@@ -24,12 +68,62 @@
   </sdpi-item>
 
   <sdpi-item label="Chat Label">
-    <sdpi-textfield setting="action" placeholder="Perception"></sdpi-textfield>
+    <sdpi-textfield
+      setting="action"
+      placeholder="Perception"
+    ></sdpi-textfield>
   </sdpi-item>
 
-<sdpi-item label="Damage Type">
-  <sdpi-textfield setting="damageType" placeholder="Fire"></sdpi-textfield>
-</sdpi-item>
+  <sdpi-item label="Damage Type">
+    <sdpi-textfield
+      setting="damageType"
+      placeholder="Fire"
+    ></sdpi-textfield>
+  </sdpi-item>
+
+  <script>
+    function updatePromptFieldStates() {
+      const numberField = document.getElementById("numberOfDice");
+      const numberPrompt = document.getElementById(
+        "promptForNumberOfDice"
+      );
+
+      const bonusField = document.getElementById("bonus");
+      const bonusPrompt = document.getElementById(
+        "promptForBonus"
+      );
+
+      if (numberField && numberPrompt) {
+        numberField.disabled = Boolean(numberPrompt.value);
+      }
+
+      if (bonusField && bonusPrompt) {
+        bonusField.disabled = Boolean(bonusPrompt.value);
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const promptCheckboxes = [
+        document.getElementById("promptForNumberOfDice"),
+        document.getElementById("promptForBonus")
+      ].filter(Boolean);
+
+      promptCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener(
+          "valuechange",
+          updatePromptFieldStates
+        );
+
+        checkbox.addEventListener(
+          "change",
+          updatePromptFieldStates
+        );
+      });
+
+      setTimeout(updatePromptFieldStates, 250);
+      setTimeout(updatePromptFieldStates, 750);
+    });
+  </script>
 
 </body>
 </html>

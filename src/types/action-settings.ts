@@ -111,6 +111,7 @@ export type LightPresetSettings = {
 export type VisionTypeSettings = {
   sense?: "vision" | "truesight" | "devilsight";
   feet?: string;
+  promptForFeet?: boolean;
   color?: string;
   label?: string;
 };

@@ -17,6 +17,8 @@ function saveSettings() {
     payload: {
       sense: el("sense").value,
       feet: String(el("feet").value || "60"),
+      promptForFeet:
+        el("promptForFeet").checked,
       color: el("color").value || DEFAULT_COLOR,
       label: el("label").value
     }
@@ -54,6 +56,9 @@ function connectElgatoStreamDeckSocket(
     el("feet").value =
       settings.feet || "60";
 
+    el("promptForFeet").checked =
+      settings.promptForFeet === true;
+
     el("color").value =
       settings.color || DEFAULT_COLOR;
 
@@ -64,5 +69,9 @@ function connectElgatoStreamDeckSocket(
 
 el("sense").addEventListener("change", saveSettings);
 el("feet").addEventListener("input", saveSettings);
+el("promptForFeet").addEventListener(
+  "change",
+  saveSettings
+);
 el("color").addEventListener("input", saveSettings);
 el("label").addEventListener("input", saveSettings);

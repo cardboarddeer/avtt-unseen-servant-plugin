@@ -182,6 +182,32 @@ export class VisionTypeAction
       command: AVTT_COMMANDS.TOGGLE_VISION_TYPE,
       sense: this.getSense(settings),
       feet: String(settings.feet || "60"),
+
+      ...(
+        settings.promptForFeet === true
+          ? {
+              feetPrompt: {
+                title:
+                  "Vision Radius",
+
+                label:
+                  "Enter the vision radius in feet",
+
+                placeholder:
+                  "60",
+
+                defaultValue:
+                  Number(
+                    settings.feet || 60
+                  ),
+
+                min:
+                  0
+              }
+            }
+          : {}
+      ),
+
       color:
         settings.color ||
         "rgba(142, 142, 142, 1)"

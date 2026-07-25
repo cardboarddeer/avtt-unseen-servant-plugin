@@ -119,6 +119,7 @@ export type VisionTypeSettings = {
 export type TokenHpModifierSettings = {
   mode?: "damage" | "heal" | "tempHp";
   amount?: number;
+  promptForAmount?: boolean;
   label?: string;
 };
 

@@ -33,6 +33,9 @@ function saveSettings() {
           el("amount").value || 1
         ),
 
+      promptForAmount:
+        el("promptForAmount").checked,
+
       label:
         el("label").value
     }
@@ -70,6 +73,9 @@ function connectElgatoStreamDeckSocket(
     el("amount").value =
       settings.amount ?? 5;
 
+    el("promptForAmount").checked =
+      settings.promptForAmount === true;
+
     el("label").value =
       settings.label || "";
   };
@@ -82,6 +88,11 @@ el("mode").addEventListener(
 
 el("amount").addEventListener(
   "input",
+  saveSettings
+);
+
+el("promptForAmount").addEventListener(
+  "change",
   saveSettings
 );
 

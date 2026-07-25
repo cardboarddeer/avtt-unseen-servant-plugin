@@ -120,7 +120,34 @@ export class TokenHpModifierAction
           AVTT_COMMANDS.MODIFY_SELECTED_TOKEN_HP,
 
         mode,
-        amount
+        amount,
+
+        ...(
+          settings.promptForAmount === true
+            ? {
+                amountPrompt: {
+                  title:
+                    mode === "damage"
+                      ? "Damage Amount"
+                      : mode === "heal"
+                        ? "Healing Amount"
+                        : "Temporary HP Amount",
+
+                  label:
+                    "Enter amount",
+
+                  placeholder:
+                    String(amount),
+
+                  defaultValue:
+                    amount,
+
+                  min:
+                    1
+                }
+              }
+            : {}
+        )
       });
 
       await ev.action.showOk();

@@ -62,10 +62,27 @@ function getTextValueEl() {
   );
 }
 
+function getPromptForValueEl() {
+  return document.getElementById(
+    "promptForValue"
+  );
+}
+
 function getLabelEl() {
   return document.getElementById(
     "label"
   );
+}
+
+function supportsValuePrompt(
+  setting
+) {
+  return [
+    "hitRoll",
+    "damageRoll",
+    "checkRoll",
+    "saveRoll"
+  ].includes(setting);
 }
 
 function getCurrentValue() {
@@ -149,6 +166,11 @@ function updateValueControl(
       "textValueRow"
     );
 
+  const promptForValueRow =
+    document.getElementById(
+      "promptForValueRow"
+    );
+
   selectRow.classList.add(
     "hidden"
   );
@@ -160,6 +182,16 @@ function updateValueControl(
   textRow.classList.add(
     "hidden"
   );
+
+  promptForValueRow.classList.toggle(
+    "hidden",
+    !supportsValuePrompt(setting)
+  );
+
+  if (!supportsValuePrompt(setting)) {
+    getPromptForValueEl().checked =
+      false;
+  }
 
   if (
     setting === "versatile" ||
@@ -226,6 +258,12 @@ function saveSettings() {
         value:
           getCurrentValue(),
 
+        promptForValue:
+          supportsValuePrompt(
+            getSettingEl().value
+          ) &&
+          getPromptForValueEl().checked,
+
         label:
           getLabelEl().value
       }
@@ -283,6 +321,9 @@ function connectElgatoStreamDeckSocket(
         settings.label ||
         "";
 
+      getPromptForValueEl().checked =
+        settings.promptForValue === true;
+
       updateValueControl(
         settings.value ||
         ""
@@ -311,6 +352,12 @@ getNumberValueEl()
 getTextValueEl()
   .addEventListener(
     "input",
+    saveSettings
+  );
+
+getPromptForValueEl()
+  .addEventListener(
+    "change",
     saveSettings
   );
 

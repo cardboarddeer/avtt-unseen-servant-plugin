@@ -153,5 +153,6 @@ export type PcRollSettingSettings = {
     | "saveRoll";
 
   value?: string;
+  promptForValue?: boolean;
   label?: string;
 };

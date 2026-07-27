@@ -132,6 +132,17 @@ export type SpawnTokenSettings = {
 };
 
 
+export type AoeControllerSettings = {
+  shape?: "circle" | "square" | "cone" | "line";
+  style?: string;
+  size?: number;
+  lineWidth?: number;
+  name?: string;
+  placement?: "selected" | "center";
+  label?: string;
+};
+
+
 export type PcRollBuffSettings = {
   category?: string;
   buff?: string;

@@ -289,6 +289,21 @@
       ]
     },
     {
+      "Name": "AOE Controller",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.aoe-controller",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Create a native AboveVTT area-of-effect template.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
       "Name": "Token Image",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.token-image",
       "Icon": "imgs/actions/counter/icon",

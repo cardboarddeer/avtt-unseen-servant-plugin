@@ -28,6 +28,7 @@ export const AVTT_COMMANDS = {
   SELECT_TOKEN: "selectToken",
   MODIFY_SELECTED_TOKEN_HP: "modifySelectedTokenHp",
   SPAWN_TOKEN_FROM_PATH: "spawnTokenFromPath",
+  CREATE_AOE: "createAoe",
 
   APPLY_PC_STAT_EFFECT: "applyPcStatEffect",
   CLEAR_PC_STAT_EFFECTS: "clearPcStatEffects",

@@ -78,6 +78,17 @@ padding:6px 8px;
 <input id="lineWidth" type="number" min="5" step="5" value="5">
 </div>
 
+<div class="field">
+<label for="promptForValue">
+Prompt on Press
+</label>
+
+<input
+id="promptForValue"
+type="checkbox"
+>
+</div>
+
 <script>
 let websocket=null;
 let uuid=null;
@@ -86,6 +97,7 @@ const style=document.getElementById("style");
 const shape=document.getElementById("shape");
 const size=document.getElementById("size");
 const lineWidth=document.getElementById("lineWidth");
+const promptForValue=document.getElementById("promptForValue");
 
 function save(){
 if(!websocket||!uuid)return;
@@ -97,7 +109,8 @@ payload:{
 style:style.value,
 shape:shape.value,
 size:Number(size.value),
-lineWidth:Number(lineWidth.value)
+lineWidth:Number(lineWidth.value),
+promptForValue:promptForValue.checked
 }
 }));
 }
@@ -125,6 +138,7 @@ style.value=settings.style||"default";
 shape.value=settings.shape||"circle";
 size.value=settings.size??20;
 lineWidth.value=settings.lineWidth??5;
+promptForValue.checked=settings.promptForValue===true;
 };
 };
 
@@ -132,6 +146,7 @@ style.onchange=save;
 shape.onchange=save;
 size.oninput=save;
 lineWidth.oninput=save;
+promptForValue.onchange=save;
 </script>
 
 </body>

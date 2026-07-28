@@ -293,6 +293,7 @@
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.aoe-controller",
       "Icon": "imgs/actions/counter/icon",
       "Tooltip": "Create a native AboveVTT area-of-effect template.",
+      "PropertyInspectorPath": "pi/aoe-controller/index.html",
       "Controllers": [
         "Keypad"
       ],

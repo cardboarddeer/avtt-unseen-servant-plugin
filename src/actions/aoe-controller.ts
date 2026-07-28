@@ -1,5 +1,6 @@
 import {
   action,
+  DidReceiveSettingsEvent,
   KeyDownEvent,
   SingletonAction,
   WillAppearEvent
@@ -17,6 +18,76 @@ import {
   AoeControllerSettings
 } from "../types/action-settings";
 
+const DEFAULT_STYLE = "default";
+const DEFAULT_SHAPE = "circle";
+const DEFAULT_SIZE_FEET = 20;
+const DEFAULT_LINE_WIDTH_FEET = 5;
+const FEET_PER_SQUARE = 5;
+
+function getStyle(
+  settings: AoeControllerSettings
+): string {
+  return settings.style || DEFAULT_STYLE;
+}
+
+function getShape(
+  settings: AoeControllerSettings
+): "circle" | "square" | "cone" | "line" {
+  return settings.shape || DEFAULT_SHAPE;
+}
+
+function getPositiveNumber(
+  value: unknown,
+  fallback: number
+): number {
+  const parsed = Number(value);
+
+  if (!Number.isFinite(parsed) || parsed <= 0) {
+    return fallback;
+  }
+
+  return parsed;
+}
+
+function getSizeFeet(
+  settings: AoeControllerSettings
+): number {
+  return getPositiveNumber(
+    settings.size,
+    DEFAULT_SIZE_FEET
+  );
+}
+
+function getLineWidthFeet(
+  settings: AoeControllerSettings
+): number {
+  return getPositiveNumber(
+    settings.lineWidth,
+    DEFAULT_LINE_WIDTH_FEET
+  );
+}
+
+function formatStyle(style: string): string {
+  if (style === "default") {
+    return "Default";
+  }
+
+  return style
+    .replace(/[_-]+/g, " ")
+    .replace(/\b\w/g, character =>
+      character.toUpperCase()
+    );
+}
+
+function getButtonTitle(
+  settings: AoeControllerSettings
+): string {
+  const style = formatStyle(getStyle(settings));
+  const sizeFeet = getSizeFeet(settings);
+
+  return `${style}\n${sizeFeet} ft`;
+}
+
 @action({
   UUID:
     "com.avtt-unseen-servent-plugin." +
@@ -25,34 +96,73 @@ import {
 export class AoeControllerAction
   extends SingletonAction<AoeControllerSettings> {
 
+  private async updateButton(
+    ev:
+      | WillAppearEvent<AoeControllerSettings>
+      | DidReceiveSettingsEvent<AoeControllerSettings>
+  ): Promise<void> {
+    await ev.action.setTitle(
+      getButtonTitle(ev.payload.settings || {})
+    );
+  }
+
   override async onWillAppear(
     ev: WillAppearEvent<AoeControllerSettings>
   ): Promise<void> {
-    await ev.action.setTitle("Fire AOE");
+    await this.updateButton(ev);
+  }
+
+  override async onDidReceiveSettings(
+    ev: DidReceiveSettingsEvent<AoeControllerSettings>
+  ): Promise<void> {
+    await this.updateButton(ev);
   }
 
   override async onKeyDown(
     ev: KeyDownEvent<AoeControllerSettings>
   ): Promise<void> {
+    const settings = ev.payload.settings || {};
+
+    const style = getStyle(settings);
+    const shape = getShape(settings);
+    const sizeFeet = getSizeFeet(settings);
+    const lineWidthFeet =
+      getLineWidthFeet(settings);
+
+    const sizeSquares =
+      sizeFeet / FEET_PER_SQUARE;
+
+    const lineWidthSquares =
+      lineWidthFeet / FEET_PER_SQUARE;
+
+    console.log("AOE Controller:", {
+      style,
+      shape,
+      sizeFeet,
+      lineWidthFeet,
+      sizeSquares,
+      lineWidthSquares
+    });
+
     try {
       await sendAVTTCommand({
         command:
           AVTT_COMMANDS.CREATE_AOE,
 
-        style:
-          "fire",
+        style,
 
-        shape:
-          "circle",
+        shape,
 
         size:
-          4,
+          sizeSquares,
 
         lineWidth:
-          1,
+          lineWidthSquares,
 
         name:
-          "Fire AOE",
+          style === "default"
+            ? ""
+            : formatStyle(style),
 
         placement:
           "selected"

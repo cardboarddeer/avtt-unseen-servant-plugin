@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>AOE Controller</title>
+
+<style>
+body{
+margin:0;
+padding:16px;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+font-size:13px;
+color:#d8d8d8;
+}
+
+.field{
+display:grid;
+grid-template-columns:120px 1fr;
+gap:12px;
+align-items:center;
+margin-bottom:12px;
+}
+
+label{
+text-align:right;
+color:#bdbdbd;
+}
+
+select,input{
+width:100%;
+box-sizing:border-box;
+background:#3a3a3a;
+color:white;
+border:1px solid #555;
+border-radius:4px;
+padding:6px 8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="field">
+<label>Style</label>
+<select id="style">
+<option value="default">Default</option>
+<option value="fire">Fire</option>
+<option value="cold">Cold</option>
+<option value="acid">Acid</option>
+<option value="poison">Poison</option>
+<option value="lightning">Lightning</option>
+<option value="darkness">Darkness</option>
+<option value="web">Web</option>
+<option value="hypnotic_pattern">Hypnotic Pattern</option>
+<option value="fog_cloud">Fog Cloud</option>
+<option value="stinking_cloud">Stinking Cloud</option>
+<option value="maddening_darkness">Maddening Darkness</option>
+</select>
+</div>
+
+<div class="field">
+<label>Shape</label>
+<select id="shape">
+<option value="circle">Circle</option>
+<option value="square">Square</option>
+<option value="cone">Cone</option>
+<option value="line">Line</option>
+</select>
+</div>
+
+<div class="field">
+<label>Size (ft)</label>
+<input id="size" type="number" min="5" step="5" value="20">
+</div>
+
+<div class="field">
+<label>Line Width (ft)</label>
+<input id="lineWidth" type="number" min="5" step="5" value="5">
+</div>
+
+<script>
+let websocket=null;
+let uuid=null;
+
+const style=document.getElementById("style");
+const shape=document.getElementById("shape");
+const size=document.getElementById("size");
+const lineWidth=document.getElementById("lineWidth");
+
+function save(){
+if(!websocket||!uuid)return;
+
+websocket.send(JSON.stringify({
+event:"setSettings",
+context:uuid,
+payload:{
+style:style.value,
+shape:shape.value,
+size:Number(size.value),
+lineWidth:Number(lineWidth.value)
+}
+}));
+}
+
+window.connectElgatoStreamDeckSocket=function(
+port,
+context,
+registerEvent,
+info,
+actionInfo
+){
+uuid=context;
+
+websocket=new WebSocket("ws://127.0.0.1:"+port);
+
+websocket.onopen=()=>{
+websocket.send(JSON.stringify({
+event:registerEvent,
+uuid
+}));
+
+const settings=JSON.parse(actionInfo).payload?.settings||{};
+
+style.value=settings.style||"default";
+shape.value=settings.shape||"circle";
+size.value=settings.size??20;
+lineWidth.value=settings.lineWidth??5;
+};
+};
+
+style.onchange=save;
+shape.onchange=save;
+size.oninput=save;
+lineWidth.oninput=save;
+</script>
+
+</body>
+</html>

@@ -79,12 +79,45 @@ padding:6px 8px;
 </div>
 
 <div class="field">
-<label for="promptForValue">
-Prompt on Press
+<label for="promptForStyle">
+Prompt for Style
 </label>
 
 <input
-id="promptForValue"
+id="promptForStyle"
+type="checkbox"
+>
+</div>
+
+<div class="field">
+<label for="promptForShape">
+Prompt for Shape
+</label>
+
+<input
+id="promptForShape"
+type="checkbox"
+>
+</div>
+
+<div class="field">
+<label for="promptForSize">
+Prompt for Size
+</label>
+
+<input
+id="promptForSize"
+type="checkbox"
+>
+</div>
+
+<div class="field">
+<label for="promptForLineWidth">
+Prompt for Line Width
+</label>
+
+<input
+id="promptForLineWidth"
 type="checkbox"
 >
 </div>
@@ -97,7 +130,10 @@ const style=document.getElementById("style");
 const shape=document.getElementById("shape");
 const size=document.getElementById("size");
 const lineWidth=document.getElementById("lineWidth");
-const promptForValue=document.getElementById("promptForValue");
+const promptForStyle=document.getElementById("promptForStyle");
+const promptForShape=document.getElementById("promptForShape");
+const promptForSize=document.getElementById("promptForSize");
+const promptForLineWidth=document.getElementById("promptForLineWidth");
 
 function save(){
 if(!websocket||!uuid)return;
@@ -110,7 +146,10 @@ style:style.value,
 shape:shape.value,
 size:Number(size.value),
 lineWidth:Number(lineWidth.value),
-promptForValue:promptForValue.checked
+promptForStyle:promptForStyle.checked,
+promptForShape:promptForShape.checked,
+promptForSize:promptForSize.checked,
+promptForLineWidth:promptForLineWidth.checked
 }
 }));
 }
@@ -138,7 +177,10 @@ style.value=settings.style||"default";
 shape.value=settings.shape||"circle";
 size.value=settings.size??20;
 lineWidth.value=settings.lineWidth??5;
-promptForValue.checked=settings.promptForValue===true;
+promptForStyle.checked=settings.promptForStyle===true;
+promptForShape.checked=settings.promptForShape===true;
+promptForSize.checked=settings.promptForSize===true;
+promptForLineWidth.checked=settings.promptForLineWidth===true;
 };
 };
 
@@ -146,7 +188,10 @@ style.onchange=save;
 shape.onchange=save;
 size.oninput=save;
 lineWidth.oninput=save;
-promptForValue.onchange=save;
+promptForStyle.onchange=save;
+promptForShape.onchange=save;
+promptForSize.onchange=save;
+promptForLineWidth.onchange=save;
 </script>
 
 </body>

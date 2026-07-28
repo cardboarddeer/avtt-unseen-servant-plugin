@@ -129,8 +129,17 @@ export class AoeControllerAction
     const lineWidthFeet =
       getLineWidthFeet(settings);
 
-    const promptForValue =
-      settings.promptForValue === true;
+    const promptForStyle =
+      settings.promptForStyle === true;
+
+    const promptForShape =
+      settings.promptForShape === true;
+
+    const promptForSize =
+      settings.promptForSize === true;
+
+    const promptForLineWidth =
+      settings.promptForLineWidth === true;
 
     const sizeSquares =
       sizeFeet / FEET_PER_SQUARE;
@@ -145,7 +154,10 @@ export class AoeControllerAction
       lineWidthFeet,
       sizeSquares,
       lineWidthSquares,
-      promptForValue
+      promptForStyle,
+      promptForShape,
+      promptForSize,
+      promptForLineWidth
     });
 
     try {
@@ -163,7 +175,10 @@ export class AoeControllerAction
         lineWidth:
           lineWidthSquares,
 
-        promptForValue,
+        promptForStyle,
+        promptForShape,
+        promptForSize,
+        promptForLineWidth,
 
         name:
           style === "default"

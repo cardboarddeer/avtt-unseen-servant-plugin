@@ -137,7 +137,10 @@ export type AoeControllerSettings = {
   style?: string;
   size?: number;
   lineWidth?: number;
-  promptForValue?: boolean;
+  promptForStyle?: boolean;
+  promptForShape?: boolean;
+  promptForSize?: boolean;
+  promptForLineWidth?: boolean;
   name?: string;
   placement?: "selected" | "center";
   label?: string;

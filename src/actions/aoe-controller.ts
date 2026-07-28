@@ -22,7 +22,6 @@ const DEFAULT_STYLE = "default";
 const DEFAULT_SHAPE = "circle";
 const DEFAULT_SIZE_FEET = 20;
 const DEFAULT_LINE_WIDTH_FEET = 5;
-const FEET_PER_SQUARE = 5;
 
 function getStyle(
   settings: AoeControllerSettings
@@ -141,19 +140,11 @@ export class AoeControllerAction
     const promptForLineWidth =
       settings.promptForLineWidth === true;
 
-    const sizeSquares =
-      sizeFeet / FEET_PER_SQUARE;
-
-    const lineWidthSquares =
-      lineWidthFeet / FEET_PER_SQUARE;
-
     console.log("AOE Controller:", {
       style,
       shape,
       sizeFeet,
       lineWidthFeet,
-      sizeSquares,
-      lineWidthSquares,
       promptForStyle,
       promptForShape,
       promptForSize,
@@ -170,10 +161,10 @@ export class AoeControllerAction
         shape,
 
         size:
-          sizeSquares,
+          sizeFeet,
 
         lineWidth:
-          lineWidthSquares,
+          lineWidthFeet,
 
         promptForStyle,
         promptForShape,

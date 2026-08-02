@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+
+  <title>Player Info Popup</title>
+
+  <script src="index.js"></script>
+
+  <style>
+    body {
+      padding: 12px;
+      background: #2d2d2d;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-size: 12px;
+      opacity: 0.85;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 4px;
+      padding: 7px;
+    }
+
+    .hint {
+      margin-top: 6px;
+      font-size: 11px;
+      line-height: 1.4;
+      opacity: 0.65;
+    }
+  </style>
+</head>
+
+<body>
+  <label for="label">
+    Button Label
+  </label>
+
+  <input
+    id="label"
+    type="text"
+    value="Player Info"
+    placeholder="Player Info"
+  >
+
+  <label for="title">
+    Popup Title
+  </label>
+
+  <input
+    id="title"
+    type="text"
+    value="Player Information"
+    placeholder="Player Information"
+  >
+
+  <label for="image">
+    Image Filename
+  </label>
+
+  <input
+    id="image"
+    type="text"
+    value="test-info.png"
+    placeholder="test-info.png"
+  >
+
+  <div class="hint">
+    Enter the filename of an image stored in the
+    Player Tracker's public/info-images folder.
+  </div>
+</body>
+</html>

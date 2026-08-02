@@ -1,5 +1,6 @@
 import {
   action,
+  DidReceiveSettingsEvent,
   KeyDownEvent,
   SingletonAction,
   WillAppearEvent
@@ -9,38 +10,101 @@ import {
   sendPlayerInfoPopupCommand
 } from "../lib/player-tracker-client";
 
+import {
+  PlayerInfoPopupSettings
+} from "../types/action-settings";
+
+function getButtonLabel(
+  settings: PlayerInfoPopupSettings
+): string {
+  return (
+    settings.label?.trim() ||
+    "Player Info"
+  );
+}
+
 @action({
   UUID:
     "com.avtt-unseen-servent-plugin." +
     "avtt-unseen-servant-plugin.player-info-popup"
 })
 export class PlayerInfoPopupAction
-  extends SingletonAction {
-  override async onWillAppear(
-    ev: WillAppearEvent
+  extends SingletonAction<
+    PlayerInfoPopupSettings
+  > {
+  private async updateButtonTitle(
+    event:
+      | WillAppearEvent<
+          PlayerInfoPopupSettings
+        >
+      | DidReceiveSettingsEvent<
+          PlayerInfoPopupSettings
+        >
+      | KeyDownEvent<
+          PlayerInfoPopupSettings
+        >
   ): Promise<void> {
-    await ev.action.setTitle(
-      "Player\nInfo"
+    await event.action.setTitle(
+      getButtonLabel(
+        event.payload.settings || {}
+      )
+    );
+  }
+
+  override async onWillAppear(
+    event:
+      WillAppearEvent<
+        PlayerInfoPopupSettings
+      >
+  ): Promise<void> {
+    await this.updateButtonTitle(
+      event
+    );
+  }
+
+  override async onDidReceiveSettings(
+    event:
+      DidReceiveSettingsEvent<
+        PlayerInfoPopupSettings
+      >
+  ): Promise<void> {
+    await this.updateButtonTitle(
+      event
     );
   }
 
   override async onKeyDown(
-    ev: KeyDownEvent
+    event:
+      KeyDownEvent<
+        PlayerInfoPopupSettings
+      >
   ): Promise<void> {
+    const settings =
+      event.payload.settings || {};
+
     try {
       await sendPlayerInfoPopupCommand({
-        image: "test-info.png",
-        title: "Player Information"
+        image:
+          settings.image?.trim() ||
+          "test-info.png",
+
+        title:
+          settings.title?.trim() ||
+          "Player Information"
       });
 
-      await ev.action.showOk();
+      await event.action.showOk();
     } catch (error) {
       console.error(
         "Could not open Player Tracker info popup:",
         error
       );
 
-      await ev.action.showAlert();
+      await event.action.showAlert();
     }
+
+    await this.updateButtonTitle(
+      event
+    );
   }
 }

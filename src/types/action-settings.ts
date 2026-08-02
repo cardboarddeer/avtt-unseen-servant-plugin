@@ -3,6 +3,12 @@ export type MarkerSettings = {
   text?: string;
 };
 
+export type PlayerInfoPopupSettings = {
+  label?: string;
+  title?: string;
+  image?: string;
+};
+
 export type RollSettings = {
   expression?: string;
 

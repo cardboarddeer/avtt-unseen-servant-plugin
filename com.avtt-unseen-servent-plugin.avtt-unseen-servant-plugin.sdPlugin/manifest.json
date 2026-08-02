@@ -443,7 +443,8 @@
           "Image": "imgs/actions/counter/key",
           "TitleAlignment": "middle"
         }
-      ]
+      ],
+      "PropertyInspectorPath": "pi/player-info-popup/index.html"
     }
   ],
   "Category": "AVTT Unseen Servant Plugin",

@@ -429,6 +429,21 @@
           "TitleAlignment": "middle"
         }
       ]
+    },
+    {
+      "Name": "Player Info Popup",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.player-info-popup",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Open an information image in the Player Tracker web app.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ]
     }
   ],
   "Category": "AVTT Unseen Servant Plugin",

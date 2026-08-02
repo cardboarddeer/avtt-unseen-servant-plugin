@@ -15,6 +15,9 @@ import { TokenHealthStyleAction } from "./actions/token-health-style";
 import { TokenHpModifierAction } from "./actions/token-hp-modifier";
 import { SpawnTokenAction } from "./actions/spawn-token";
 import { AoeControllerAction } from "./actions/aoe-controller";
+import {
+  PlayerInfoPopupAction
+} from "./actions/player-info-popup";
 import { TokenImageAction } from "./actions/token-image";
 import { ToggleAuraAction, AuraPresetAction } from "./actions/auras";
 import {
@@ -55,6 +58,7 @@ streamDeck.actions.registerAction(new TokenHealthStyleAction());
 streamDeck.actions.registerAction(new TokenHpModifierAction());
 streamDeck.actions.registerAction(new SpawnTokenAction());
 streamDeck.actions.registerAction(new AoeControllerAction());
+streamDeck.actions.registerAction(new PlayerInfoPopupAction());
 streamDeck.actions.registerAction(new TokenImageAction());
 streamDeck.actions.registerAction(new ToggleAuraAction());
 streamDeck.actions.registerAction(new AuraPresetAction());

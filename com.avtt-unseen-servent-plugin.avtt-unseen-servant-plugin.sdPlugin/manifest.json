@@ -193,22 +193,6 @@
       ]
     },
     {
-      "Name": "PC HP",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.selected-pc-hp",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Display a designated PC's HP from AboveVTT.",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ],
-      "PropertyInspectorPath": "pi/selected-pc-hp/index.html"
-    },
-    {
       "Name": "Set Token Size",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.set-token-size",
       "Icon": "imgs/actions/counter/icon",

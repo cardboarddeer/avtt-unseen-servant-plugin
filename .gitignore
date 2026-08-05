@@ -13,3 +13,7 @@ bin/
 
 # IDE local settings
 .vscode/settings.json
+**/.DS_Store
+logs/
+*.backup
+*.bak

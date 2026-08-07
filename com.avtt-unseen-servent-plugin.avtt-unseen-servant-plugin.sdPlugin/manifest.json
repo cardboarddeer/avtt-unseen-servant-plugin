@@ -51,68 +51,6 @@
       ]
     },
     {
-      "Name": "Initiative",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.initiative",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Move AboveVTT combat tracker forward or backward.",
-      "PropertyInspectorPath": "pi/initiative/index.html",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Open Tab",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.open-tab",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Open a selected AboveVTT tab.",
-      "PropertyInspectorPath": "pi/tabs/index.html",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Zoom In",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.zoom-in",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Zoom in",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Zoom Out",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.zoom-out",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Zoom out",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
       "Name": "Roll Formula",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll-selected-formula",
       "Icon": "imgs/actions/counter/icon",

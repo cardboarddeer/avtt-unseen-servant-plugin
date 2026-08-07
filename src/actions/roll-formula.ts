@@ -23,7 +23,8 @@ export class RollFormulaAction extends SingletonAction<RollSettings> {
       settings.numberOfDice !== undefined ||
       settings.bonus !== undefined ||
       settings.promptForNumberOfDice === true ||
-      settings.promptForBonus === true;
+      settings.promptForBonus === true ||
+      settings.rollMode !== undefined;
 
     /*
      * Preserve existing buttons created before the Property Inspector
@@ -161,6 +162,10 @@ export class RollFormulaAction extends SingletonAction<RollSettings> {
             }
           : {}
       ),
+
+      rollMode:
+        settings.rollMode ||
+        "normal",
 
       rollType:
         settings.rollType ||

@@ -27,6 +27,12 @@ export type RollSettings = {
   bonus?: number | string;
   promptForBonus?: boolean;
 
+  rollMode?:
+    | "normal"
+    | "advantage"
+    | "disadvantage"
+    | "prompt";
+
   rollType?: string;
   action?: string;
   damageType?: string;

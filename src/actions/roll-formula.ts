@@ -18,13 +18,20 @@ export class RollFormulaAction extends SingletonAction<RollSettings> {
     const settings =
       ev.payload.settings || {};
 
+    /*
+     * rollMode is deliberately excluded here: it lives in the same shared
+     * Property Inspector as the legacy expression field, and changing it
+     * on an old button must not divert that button into the new-format
+     * branch below (which ignores settings.expression entirely). Legacy
+     * buttons don't support roll mode either way, since sendAVTTRoll's
+     * /roll endpoint has no rollMode parameter.
+     */
     const usesNewRollSettings =
       settings.diceType !== undefined ||
       settings.numberOfDice !== undefined ||
       settings.bonus !== undefined ||
       settings.promptForNumberOfDice === true ||
-      settings.promptForBonus === true ||
-      settings.rollMode !== undefined;
+      settings.promptForBonus === true;
 
     /*
      * Preserve existing buttons created before the Property Inspector

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+
+  <title>Open Journal / Handout</title>
+
+  <script src="index.js"></script>
+
+  <style>
+    body {
+      padding: 12px;
+      background: #2d2d2d;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-size: 12px;
+      opacity: 0.85;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 4px;
+      padding: 7px;
+    }
+
+    .hint {
+      margin-top: 6px;
+      font-size: 11px;
+      line-height: 1.4;
+      opacity: 0.65;
+    }
+  </style>
+</head>
+
+<body>
+  <label for="noteId">
+    Journal/Handout ID
+  </label>
+
+  <input
+    id="noteId"
+    type="text"
+    placeholder="e.g. 4c16ad5d-dc24-4977-b3a7-1bc0e5bb0576"
+  >
+
+  <div class="hint">
+    To find this ID: open the browser console, click the journal/handout
+    entry in AboveVTT like normal, then look for a line starting with
+    "find_or_create_generic_draggable_window id: noteWindow_..." — the
+    ID is the part right after "noteWindow_". There's no dropdown yet,
+    so it has to be typed in by hand.
+  </div>
+
+  <label for="label">
+    Button Label
+  </label>
+
+  <input
+    id="label"
+    type="text"
+    value="Journal"
+    placeholder="Journal"
+  >
+</body>
+</html>

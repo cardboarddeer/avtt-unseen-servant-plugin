@@ -9,6 +9,11 @@ export type PlayerInfoPopupSettings = {
   image?: string;
 };
 
+export type JournalNoteSettings = {
+  noteId?: string;
+  label?: string;
+};
+
 export type RollSettings = {
   expression?: string;
 

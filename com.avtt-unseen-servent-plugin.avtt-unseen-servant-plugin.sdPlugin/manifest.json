@@ -367,6 +367,22 @@
         }
       ],
       "PropertyInspectorPath": "pi/player-info-popup/index.html"
+    },
+    {
+      "Name": "Open Journal/Handout",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.journal-note",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Open a specific AboveVTT journal entry or handout.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/key",
+          "TitleAlignment": "middle"
+        }
+      ],
+      "PropertyInspectorPath": "pi/journal-note/index.html"
     }
   ],
   "Category": "AVTT Unseen Servant Plugin",

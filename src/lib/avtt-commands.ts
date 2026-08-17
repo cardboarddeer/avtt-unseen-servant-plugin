@@ -27,5 +27,7 @@ export const AVTT_COMMANDS = {
 
   TOGGLE_LIGHT: "toggleLight",
   TOGGLE_LIGHT_PRESET: "toggleLightPreset",
-  TOGGLE_VISION_TYPE: "toggleVisionType"
+  TOGGLE_VISION_TYPE: "toggleVisionType",
+
+  OPEN_JOURNAL_NOTE: "openJournalNote"
 } as const;

@@ -35,6 +35,22 @@
       line-height: 1.4;
       opacity: 0.65;
     }
+
+    .checkbox-field {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .checkbox-field input {
+      width: auto;
+      margin-top: 0;
+    }
+
+    .checkbox-field label {
+      margin-top: 0;
+    }
   </style>
 </head>
 
@@ -75,6 +91,17 @@
   <div class="hint">
     Enter the filename of an image stored in the
     Player Tracker's public/info-images folder.
+  </div>
+
+  <div class="checkbox-field">
+    <input
+      id="zoomEnabled"
+      type="checkbox"
+    >
+
+    <label for="zoomEnabled">
+      Allow click-to-zoom on this image
+    </label>
   </div>
 </body>
 </html>

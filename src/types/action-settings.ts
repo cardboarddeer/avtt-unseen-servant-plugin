@@ -7,6 +7,7 @@ export type PlayerInfoPopupSettings = {
   label?: string;
   title?: string;
   image?: string;
+  zoomEnabled?: boolean;
 };
 
 export type JournalNoteSettings = {

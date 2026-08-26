@@ -13,6 +13,10 @@ function getImageElement() {
   return document.getElementById("image");
 }
 
+function getZoomEnabledElement() {
+  return document.getElementById("zoomEnabled");
+}
+
 function loadSettings(settings = {}) {
   getLabelElement().value =
     settings.label || "Player Info";
@@ -22,6 +26,9 @@ function loadSettings(settings = {}) {
 
   getImageElement().value =
     settings.image || "test-info.png";
+
+  getZoomEnabledElement().checked =
+    settings.zoomEnabled === true;
 }
 
 function saveSettings() {
@@ -41,7 +48,10 @@ function saveSettings() {
           getTitleElement().value.trim(),
 
         image:
-          getImageElement().value.trim()
+          getImageElement().value.trim(),
+
+        zoomEnabled:
+          getZoomEnabledElement().checked
       }
     })
   );
@@ -89,7 +99,8 @@ window.addEventListener(
     [
       "label",
       "title",
-      "image"
+      "image",
+      "zoomEnabled"
     ].forEach(id => {
       const element =
         document.getElementById(id);

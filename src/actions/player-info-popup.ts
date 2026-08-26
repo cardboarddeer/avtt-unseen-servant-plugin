@@ -11,6 +11,10 @@ import {
 } from "../lib/player-tracker-client";
 
 import {
+  sendAVTTCommand
+} from "../lib/avtt-client";
+
+import {
   PlayerInfoPopupSettings
 } from "../types/action-settings";
 
@@ -82,15 +86,25 @@ export class PlayerInfoPopupAction
     const settings =
       event.payload.settings || {};
 
-    try {
-      await sendPlayerInfoPopupCommand({
-        image:
-          settings.image?.trim() ||
-          "test-info.png",
+    const image =
+      settings.image?.trim() ||
+      "test-info.png";
 
-        title:
-          settings.title?.trim() ||
-          "Player Information"
+    const title =
+      settings.title?.trim() ||
+      "Player Information";
+
+    try {
+      // Player Tracker dashboard popup is deliberately disabled
+      // (AboveVTT's own popup replaces it) — left in place, not
+      // deleted, in case it needs to come back.
+      // await sendPlayerInfoPopupCommand({ image, title });
+
+      await sendAVTTCommand({
+        command: "showImagePopup",
+        image,
+        title,
+        zoomEnabled: settings.zoomEnabled === true
       });
 
       await event.action.showOk();

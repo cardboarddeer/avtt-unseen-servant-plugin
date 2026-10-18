@@ -39,6 +39,13 @@ export type RollSettings = {
     | "disadvantage"
     | "prompt";
 
+  // On a Stream Deck+ dial with Roll Mode set to "prompt": the mode picked
+  // last time, so the next roll's mode step starts there.
+  lastPromptRollMode?:
+    | "normal"
+    | "advantage"
+    | "disadvantage";
+
   rollType?: string;
   action?: string;
   damageType?: string;

@@ -4,56 +4,34 @@
   "Author": "Arnold Chon",
   "Actions": [
     {
-      "Name": "AboveVTT Roll",
+      "Name": "Basic Dice Roller",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll",
-      "Icon": "imgs/actions/counter/icon",
+      "Icon": "imgs/actions/roll/icon",
       "Tooltip": "Roll dice in AboveVTT.",
       "PropertyInspectorPath": "ui/increment-counter.html",
       "Controllers": [
-        "Keypad"
+        "Keypad",
+        "Encoder"
       ],
       "States": [
         {
-          "Image": "imgs/actions/counter/key",
+          "Image": "imgs/actions/roll/key",
           "TitleAlignment": "middle"
         }
-      ]
-    },
-    {
-      "Name": "Toggle Daylight",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-daylight",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Toggle daylight color in AboveVTT.",
-      "Controllers": [
-        "Keypad"
       ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
+      "Encoder": {
+        "layout": "layouts/dice-roller.json",
+        "TriggerDescription": {
+          "Rotate": "Die / Adjust",
+          "Push": "Next / Roll",
+          "Touch": "Next / Roll"
         }
-      ]
+      }
     },
     {
-      "Name": "Toggle Marker",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-marker",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Toggle a custom marker on selected AboveVTT tokens.",
-      "PropertyInspectorPath": "ui/toggle-marker.html",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Roll Formula",
+      "Name": "Formula Dice Roller",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.roll-selected-formula",
-      "Icon": "imgs/actions/counter/icon",
+      "Icon": "imgs/actions/roll-selected-formula/icon",
       "Tooltip": "Roll custom formula using selected token data",
       "Controllers": [
         "Keypad"
@@ -61,23 +39,7 @@
       "PropertyInspectorPath": "pi/roll-formula/index.html",
       "States": [
         {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Game Log Message",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.game-log-message",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Send text to the AboveVTT game log",
-      "Controllers": [
-        "Keypad"
-      ],
-      "PropertyInspectorPath": "pi/game-log-message/index.html",
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
+          "Image": "imgs/actions/roll-selected-formula/key",
           "TitleAlignment": "middle"
         }
       ]
@@ -85,7 +47,7 @@
     {
       "Name": "Condition",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.condition",
-      "Icon": "imgs/actions/counter/icon",
+      "Icon": "imgs/actions/condition/icon",
       "Tooltip": "Toggle a condition on selected AboveVTT tokens.",
       "Controllers": [
         "Keypad"
@@ -93,119 +55,7 @@
       "PropertyInspectorPath": "pi/condition/index.html",
       "States": [
         {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "PC Roll Buff",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.pc-roll-buff",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Apply a dynamically discovered AboveVTT roll buff or debuff to the selected PC.",
-      "Controllers": [
-        "Keypad"
-      ],
-      "PropertyInspectorPath": "pi/pc-roll-buff/index.html",
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "PC Roll Settings",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.pc-roll-setting",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Change an AboveVTT roll setting for the selected PC.",
-      "Controllers": [
-        "Keypad"
-      ],
-      "PropertyInspectorPath": "pi/pc-roll-setting/index.html",
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Set Token Size",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.set-token-size",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Set selected AboveVTT token size.",
-      "Controllers": [
-        "Keypad"
-      ],
-      "PropertyInspectorPath": "pi/set-token-size/index.html",
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Token Style",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.token-style",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Set the native AboveVTT style for selected tokens.",
-      "PropertyInspectorPath": "pi/token-style/index.html",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Token Health Style",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.token-health-style",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Set the native AboveVTT health visual for selected tokens.",
-      "PropertyInspectorPath": "pi/token-health-style/index.html",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Heal, Damage & Temp HP",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.token-hp-modifier",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Damage, heal, or grant Temporary HP to selected AboveVTT tokens.",
-      "PropertyInspectorPath": "pi/token-hp-modifier/index.html",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Spawn Token",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.spawn-token",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Spawn one or more tokens from AboveVTT My Tokens.",
-      "PropertyInspectorPath": "pi/spawn-token/index.html",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
+          "Image": "imgs/actions/condition/key",
           "TitleAlignment": "middle"
         }
       ]
@@ -213,7 +63,7 @@
     {
       "Name": "AOE Controller",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.aoe-controller",
-      "Icon": "imgs/actions/counter/icon",
+      "Icon": "imgs/actions/aoe-controller/icon",
       "Tooltip": "Create a native AboveVTT area-of-effect template.",
       "PropertyInspectorPath": "pi/aoe-controller/index.html",
       "Controllers": [
@@ -221,101 +71,39 @@
       ],
       "States": [
         {
-          "Image": "imgs/actions/counter/key",
+          "Image": "imgs/actions/aoe-controller/key",
           "TitleAlignment": "middle"
         }
       ]
     },
     {
-      "Name": "Token Image",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.token-image",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Apply a custom image URL or reset the selected AboveVTT token to its default image.",
-      "PropertyInspectorPath": "pi/token-image/index.html",
+      "Name": "PC Roll Buff",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.pc-roll-buff",
+      "Icon": "imgs/actions/pc-roll-buff/icon",
+      "Tooltip": "Apply a dynamically discovered AboveVTT roll buff or debuff to the selected PC.",
       "Controllers": [
         "Keypad"
       ],
+      "PropertyInspectorPath": "pi/pc-roll-buff/index.html",
       "States": [
         {
-          "Image": "imgs/actions/counter/key",
+          "Image": "imgs/actions/pc-roll-buff/key",
           "TitleAlignment": "middle"
         }
       ]
     },
     {
-      "Name": "Toggle Aura",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-aura",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Toggle aura visibility on selected AboveVTT tokens.",
+      "Name": "PC Roll Settings",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.pc-roll-setting",
+      "Icon": "imgs/actions/pc-roll-setting/icon",
+      "Tooltip": "Change an AboveVTT roll setting for the selected PC.",
       "Controllers": [
         "Keypad"
       ],
+      "PropertyInspectorPath": "pi/pc-roll-setting/index.html",
       "States": [
         {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Aura Preset",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.aura-preset",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Apply or remove an AboveVTT aura preset on selected tokens.",
-      "Controllers": [
-        "Keypad"
-      ],
-      "PropertyInspectorPath": "pi/aura-preset/index.html",
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Toggle Light",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-light",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Toggle the selected AboveVTT token light.",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Light Preset",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.light-preset",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Apply an AboveVTT light preset and optional light image.",
-      "PropertyInspectorPath": "pi/light-preset/index.html",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Vision",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.vision-preset",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Toggle Darkvision, Truesight, or Devil's Sight without changing the other vision types.",
-      "PropertyInspectorPath": "pi/vision-preset/index.html",
-      "Controllers": [
-        "Keypad"
-      ],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/key",
+          "Image": "imgs/actions/pc-roll-setting/key",
           "TitleAlignment": "middle"
         }
       ]
@@ -323,7 +111,7 @@
     {
       "Name": "PC Stat Effect",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.pc-stat-effect",
-      "Icon": "imgs/actions/counter/icon",
+      "Icon": "imgs/actions/pc-stat-effect/icon",
       "Tooltip": "Apply a persistent stat effect to the selected PC.",
       "PropertyInspectorPath": "pi/pc-stat-effect/index.html",
       "Controllers": [
@@ -331,7 +119,7 @@
       ],
       "States": [
         {
-          "Image": "imgs/actions/counter/key",
+          "Image": "imgs/actions/pc-stat-effect/key",
           "TitleAlignment": "middle"
         }
       ]
@@ -339,7 +127,7 @@
     {
       "Name": "Clear PC Effects",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.clear-pc-effects",
-      "Icon": "imgs/actions/counter/icon",
+      "Icon": "imgs/actions/clear-pc-effects/icon",
       "Tooltip": "Clear one or all stat effects from the selected PC.",
       "PropertyInspectorPath": "pi/clear-pc-effects/index.html",
       "Controllers": [
@@ -347,42 +135,247 @@
       ],
       "States": [
         {
-          "Image": "imgs/actions/counter/key",
+          "Image": "imgs/actions/clear-pc-effects/key",
           "TitleAlignment": "middle"
         }
       ]
     },
     {
-      "Name": "Player Info Popup",
-      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.player-info-popup",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Open an information image in the Player Tracker web app.",
+      "Name": "Heal, Damage & Temp HP",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.token-hp-modifier",
+      "Icon": "imgs/actions/token-hp-modifier/icon",
+      "Tooltip": "Damage, heal, or grant Temporary HP to selected AboveVTT tokens.",
+      "PropertyInspectorPath": "pi/token-hp-modifier/index.html",
       "Controllers": [
         "Keypad"
       ],
       "States": [
         {
-          "Image": "imgs/actions/counter/key",
+          "Image": "imgs/actions/token-hp-modifier/key",
           "TitleAlignment": "middle"
         }
-      ],
-      "PropertyInspectorPath": "pi/player-info-popup/index.html"
+      ]
     },
     {
-      "Name": "Open Journal/Handout",
+      "Name": "Token Spawner",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.spawn-token",
+      "Icon": "imgs/actions/spawn-token/icon",
+      "Tooltip": "Spawn one or more tokens from AboveVTT My Tokens.",
+      "PropertyInspectorPath": "pi/spawn-token/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/spawn-token/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Token Size",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.set-token-size",
+      "Icon": "imgs/actions/set-token-size/icon",
+      "Tooltip": "Set selected AboveVTT token size.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "PropertyInspectorPath": "pi/set-token-size/index.html",
+      "States": [
+        {
+          "Image": "imgs/actions/set-token-size/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Token Image",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.token-image",
+      "Icon": "imgs/actions/token-image/icon",
+      "Tooltip": "Apply a custom image URL or reset the selected AboveVTT token to its default image.",
+      "PropertyInspectorPath": "pi/token-image/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/token-image/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Token Style",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.token-style",
+      "Icon": "imgs/actions/token-style/icon",
+      "Tooltip": "Set the native AboveVTT style for selected tokens.",
+      "PropertyInspectorPath": "pi/token-style/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/token-style/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Token Health Style",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.token-health-style",
+      "Icon": "imgs/actions/token-health-style/icon",
+      "Tooltip": "Set the native AboveVTT health visual for selected tokens.",
+      "PropertyInspectorPath": "pi/token-health-style/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/token-health-style/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Vision",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.vision-preset",
+      "Icon": "imgs/actions/vision-preset/icon",
+      "Tooltip": "Toggle Darkvision, Truesight, or Devil's Sight without changing the other vision types.",
+      "PropertyInspectorPath": "pi/vision-preset/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/vision-preset/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Toggle Aura",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-aura",
+      "Icon": "imgs/actions/toggle-aura/icon",
+      "Tooltip": "Toggle aura visibility on selected AboveVTT tokens.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/toggle-aura/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Aura Preset",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.aura-preset",
+      "Icon": "imgs/actions/aura-preset/icon",
+      "Tooltip": "Apply or remove an AboveVTT aura preset on selected tokens.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "PropertyInspectorPath": "pi/aura-preset/index.html",
+      "States": [
+        {
+          "Image": "imgs/actions/aura-preset/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Toggle Light",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-light",
+      "Icon": "imgs/actions/toggle-light/icon",
+      "Tooltip": "Toggle the selected AboveVTT token light.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/toggle-light/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Light Preset",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.light-preset",
+      "Icon": "imgs/actions/light-preset/icon",
+      "Tooltip": "Apply an AboveVTT light preset and optional light image.",
+      "PropertyInspectorPath": "pi/light-preset/index.html",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/light-preset/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Daylight Toggle",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.toggle-daylight",
+      "Icon": "imgs/actions/toggle-daylight/icon",
+      "Tooltip": "Toggle daylight color in AboveVTT.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/toggle-daylight/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Game Log Message",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.game-log-message",
+      "Icon": "imgs/actions/game-log-message/icon",
+      "Tooltip": "Send text to the AboveVTT game log",
+      "Controllers": [
+        "Keypad"
+      ],
+      "PropertyInspectorPath": "pi/game-log-message/index.html",
+      "States": [
+        {
+          "Image": "imgs/actions/game-log-message/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Journal & Handout",
       "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.journal-note",
-      "Icon": "imgs/actions/counter/icon",
+      "Icon": "imgs/actions/journal-note/icon",
       "Tooltip": "Open a specific AboveVTT journal entry or handout.",
       "Controllers": [
         "Keypad"
       ],
       "States": [
         {
-          "Image": "imgs/actions/counter/key",
+          "Image": "imgs/actions/journal-note/key",
           "TitleAlignment": "middle"
         }
       ],
       "PropertyInspectorPath": "pi/journal-note/index.html"
+    },
+    {
+      "Name": "AVTT Popup Window",
+      "UUID": "com.avtt-unseen-servent-plugin.avtt-unseen-servant-plugin.player-info-popup",
+      "Icon": "imgs/actions/player-info-popup/icon",
+      "Tooltip": "Open an information image in the Player Tracker web app.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/actions/player-info-popup/key",
+          "TitleAlignment": "middle"
+        }
+      ],
+      "PropertyInspectorPath": "pi/player-info-popup/index.html"
     }
   ],
   "Category": "AVTT Unseen Servant Plugin",

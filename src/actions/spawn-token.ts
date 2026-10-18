@@ -38,7 +38,7 @@ export class SpawnTokenAction
     const title =
       settings.label ||
       settings.tokenName ||
-      "Spawn Token";
+      "Token Spawner";
 
     await ev.action.setTitle(title);
   }

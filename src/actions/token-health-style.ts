@@ -14,6 +14,7 @@ type TokenHealthVisual =
   | "auraBloodied50"
   | "conditionBloodied50"
   | "hpMeter"
+  | "bossMeter"
   | "none";
 
 type TokenHealthStyleSettings = {
@@ -25,6 +26,7 @@ const BUTTON_TITLES: Record<TokenHealthVisual, string> = {
   auraBloodied50: "Aura\nBloodied 50",
   conditionBloodied50: "Condition\nBloodied 50",
   hpMeter: "HP\nMeter",
+  bossMeter: "Boss\nMeter",
   none: "Health\nNone"
 };
 
@@ -37,6 +39,7 @@ function getVisual(
     visual === "auraBloodied50" ||
     visual === "conditionBloodied50" ||
     visual === "hpMeter" ||
+    visual === "bossMeter" ||
     visual === "none"
   ) {
     return visual;

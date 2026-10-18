@@ -44,18 +44,29 @@ padding:6px 8px;
 <label>Style</label>
 <select id="style">
 <option value="default">Default</option>
-<option value="fire">Fire</option>
-<option value="cold">Cold</option>
 <option value="acid">Acid</option>
-<option value="poison">Poison</option>
-<option value="lightning">Lightning</option>
+<option value="bludgeoning">Bludgeoning</option>
+<option value="cold">Cold</option>
 <option value="darkness">Darkness</option>
-<option value="web">Web</option>
-<option value="hypnotic_pattern">Hypnotic Pattern</option>
-<option value="fog_cloud">Fog Cloud</option>
-<option value="stinking_cloud">Stinking Cloud</option>
-<option value="maddening_darkness">Maddening Darkness</option>
+<option value="fire">Fire</option>
+<option value="force">Force</option>
+<option value="lightning">Lightning</option>
+<option value="nature">Nature</option>
+<option value="necrotic">Necrotic</option>
+<option value="piercing">Piercing</option>
+<option value="poison">Poison</option>
+<option value="psychic">Psychic</option>
+<option value="radiant">Radiant</option>
+<option value="slashing">Slashing</option>
+<option value="thunder">Thunder</option>
+<option value="water">Water</option>
+<option value="__custom__">Custom&hellip;</option>
 </select>
+</div>
+
+<div class="field" id="customStyleField" style="display:none;">
+<label>Custom Style</label>
+<input id="customStyle" type="text" placeholder="e.g. holy, web, whirlwind">
 </div>
 
 <div class="field">
@@ -127,6 +138,8 @@ let websocket=null;
 let uuid=null;
 
 const style=document.getElementById("style");
+const customStyleField=document.getElementById("customStyleField");
+const customStyle=document.getElementById("customStyle");
 const shape=document.getElementById("shape");
 const size=document.getElementById("size");
 const lineWidth=document.getElementById("lineWidth");
@@ -135,6 +148,21 @@ const promptForShape=document.getElementById("promptForShape");
 const promptForSize=document.getElementById("promptForSize");
 const promptForLineWidth=document.getElementById("promptForLineWidth");
 
+const knownStyleValues=Array.from(style.options)
+.map(option=>option.value)
+.filter(value=>value!=="__custom__");
+
+function updateCustomStyleVisibility(){
+customStyleField.style.display=
+style.value==="__custom__" ? "" : "none";
+}
+
+function resolveStyleValue(){
+return style.value==="__custom__"
+? customStyle.value.trim()
+: style.value;
+}
+
 function save(){
 if(!websocket||!uuid)return;
 
@@ -142,7 +170,7 @@ websocket.send(JSON.stringify({
 event:"setSettings",
 context:uuid,
 payload:{
-style:style.value,
+style:resolveStyleValue(),
 shape:shape.value,
 size:Number(size.value),
 lineWidth:Number(lineWidth.value),
@@ -172,8 +200,17 @@ uuid
 }));
 
 const settings=JSON.parse(actionInfo).payload?.settings||{};
+const savedStyle=settings.style||"default";
 
-style.value=settings.style||"default";
+if(knownStyleValues.includes(savedStyle)){
+style.value=savedStyle;
+customStyle.value="";
+}else{
+style.value="__custom__";
+customStyle.value=savedStyle;
+}
+updateCustomStyleVisibility();
+
 shape.value=settings.shape||"circle";
 size.value=settings.size??20;
 lineWidth.value=settings.lineWidth??5;
@@ -184,7 +221,11 @@ promptForLineWidth.checked=settings.promptForLineWidth===true;
 };
 };
 
-style.onchange=save;
+style.onchange=()=>{
+updateCustomStyleVisibility();
+save();
+};
+customStyle.oninput=save;
 shape.onchange=save;
 size.oninput=save;
 lineWidth.oninput=save;
